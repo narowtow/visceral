@@ -1,5 +1,6 @@
 import { organs } from '../data/contract'
 import type { Selection, Value } from '../data/contract'
+import { formatScaleTick } from '../lib/colorScale'
 import type { createColorScale } from '../lib/colorScale'
 import { formatValue } from '../lib/format'
 import { useExplorer } from '../state/store'
@@ -24,10 +25,11 @@ export default function Legend({ selection, context, population, loading, values
     <div className="color-key">
       <div className="scale-key">
         <div className="scale-gradient" style={{ background: scale.gradient }} />
-        <div className="scale-ticks">{scale.ticks.map((tick, i) => <span key={i}>{formatValue(tick, true)}</span>)}</div>
+        <div className="scale-ticks">{scale.tickLabels.map((tick, i) => <span key={tick.value} style={{ left: `${tick.position}%`, transform: `translateX(${i === 0 ? '0' : i === scale.tickLabels.length - 1 ? '-100%' : '-50%'})` }}>{tick.label}</span>)}</div>
       </div>
       <div className="missing-key"><span className="missing" style={{ backgroundColor: scale.color(null) }} />No data</div>
     </div>
+    {scale.lowerClamped && <p className="subtle-note">Display floor: {formatScaleTick(scale.domain[0])} (maximum ÷ 1,000). Lower values share the lowest color; printed values are unchanged.</p>}
     <div className="legend-settings">
       <span>{scale.logarithmic ? 'Logarithmic' : 'Linear'} scale · {rescale ? 'Current filters' : 'Fixed across filters'}</span>
       <label><input type="checkbox" checked={rescale} onChange={toggleRescale} /> Rescale to current selection</label>

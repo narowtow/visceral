@@ -14,13 +14,15 @@ This serves the synthetic contract fixture at `/fixture-data/` using development
 
 ## Anatomy
 
-The lazy scene checks `${BASE_URL}models/visceral.glb` and loads it with `useGLTF` and MeshoptDecoder. Missing or unreadable models fall back to `src/scene/PlaceholderBody.ts`, a schematic Y-up, metre-scale body. Set `VITE_ANATOMY=placeholder` to skip the model check. Both sources use the same Object3D mesh-name adapter in `src/scene/anatomy.ts`; organ definitions remain authoritative. List-only and systemic groups are still fully selectable.
+The lazy scene loads `${BASE_URL}models/visceral.glb` directly through R3F's cached `useLoader`, Three's GLTFLoader and MeshoptDecoder. `src/scene/modelLoader.ts` configures the same loader/decoder for the scene and Node tests. There is no separate HEAD availability check. Missing or unreadable models fall back to `src/scene/PlaceholderBody.ts`, log the original error, and show a non-blocking notice. Set `VITE_ANATOMY=placeholder` to intentionally use the schematic without attempting a model load. Both sources use the same Object3D mesh-name adapter in `src/scene/anatomy.ts`; organ definitions remain authoritative. List-only and systemic groups are still fully selectable.
+
+The lung surfaces are derived envelopes of BodyParts3D bronchial/vascular trees; bronchi are retained in the trachea node. See `../assets/README.md` for derivation and attribution. Skin is subtle neutral glass by default (3.5% opacity in dark mode, 5.5% in light); skeleton is neutral bone. Selecting either group or displaying its layer alone restores its data color. View commands explicitly invalidate the demand loop, including instant commands under reduced motion; animated transitions continue through drei's update events.
 
 ## Architecture
 
 - `src/data/`: contract types, shared abortable JSON cache, loading hook and pure selectors.
 - `src/state/`: Zustand selection/presentation state and validated two-way hash-query sync.
-- `src/lib/colorScale.ts`: fixed or explicitly rescaled viridis domain; logarithmic above a 50-fold positive range.
+- `src/lib/colorScale.ts`: fixed or explicitly rescaled viridis display domain; logarithmic above a 50-fold positive range. Extreme positive domains clamp the display minimum to maximum ÷ 1,000, limiting rare tiny values' effect while keeping fixed colors comparable across filters. This deterministic rule needs no extra shards or pipeline changes. Lower values retain their actual printed numbers and share the lowest color. The legend explains the floor and uses positioned, rounded log ticks that never turn tiny positives into zero labels.
 - `src/components/`: filters, keyboard organ list, detail panel and lazy charts with HTML table alternatives.
 - `src/scene/`: lazy demand-rendered anatomy, selection outline, picking and camera controls.
 - `src/content/organs.ts`: neutral descriptions without statistics.
@@ -37,4 +39,6 @@ npm run build
 bash scripts/check.sh
 ```
 
-Tests use jsdom and never render WebGL. Scene indexing/material independence, fixture selectors, URL sync, color domains, cache cancellation and keyboard/list/filter interactions are covered. A browser is still required for visual layout and WebGL device QA.
+Tests use jsdom or Node and never require a WebGL context. They decode the shipped Meshopt GLB, run contract validation, indexing, material cloning, layer updates and outline preparation, and mount the actual model under StrictMode with a mocked renderer. Real camera movement from idle demand rendering is checked with normal and reduced motion, including focus, three zoom clicks, rotation and reset. HTML view-button routing, theme-specific shell materials, derived lung volume, scene transforms, limb coverage, fixture selectors, URL sync, color domains, cache cancellation and keyboard/list/filter interactions are covered. A browser is still required for visual layout and WebGL device QA.
+
+The header uses the supplied transparent brand icon next to live text. Favicon, Apple touch icon and `site.webmanifest` use the same icon family. Paths respect Vite's production base; the purple raster wordmark is deliberately unused on dark backgrounds.

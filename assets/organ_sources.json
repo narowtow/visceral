@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "license": "CC-BY-4.0",
+  "notes": "Concepts resolve to ELEMENT file IDs through the specified tree's tables. Coordinates in source OBJs are millimetres, Z-up, anterior -Y. No filenames are inferred from concept IDs.",
+  "nodes": {
+    "heart": { "tree": "partof", "concepts": ["FMA7088"], "notes": "Heart, union of its listed elements." },
+    "brain": { "tree": "partof", "concepts": ["FMA50801"], "notes": "Brain." },
+    "lung_right": { "tree": "partof", "concepts": ["FMA7309"], "derived": "envelope of BodyParts3D bronchial/vascular tree", "notes": "No lung surface in the archive. Derive a smoothed, voxel-remeshed convex envelope from all right-lung elements; vessels are inputs only, not retained as vessels." },
+    "lung_left": { "tree": "partof", "concepts": ["FMA7310"], "derived": "envelope of BodyParts3D bronchial/vascular tree", "notes": "No lung surface in the archive. Derive a smoothed, voxel-remeshed convex envelope from all left-lung elements; vessels are inputs only, not retained as vessels." },
+    "trachea": { "tree": "partof", "concepts": ["FMA7394", "FMA7395", "FMA7396", "FMA26661", "FMA26662"], "notes": "Trachea, right/left main bronchi and bronchial trees only. Pulmonary arteries and veins excluded." },
+    "liver": { "tree": "partof", "concepts": ["FMA7197"], "notes": "Liver." },
+    "stomach": { "tree": "partof", "concepts": ["FMA7148"], "notes": "Stomach." },
+    "esophagus": { "tree": "partof", "concepts": ["FMA7131"], "notes": "Esophagus." },
+    "pancreas": { "tree": "partof", "concepts": ["FMA7198"], "notes": "Pancreas." },
+    "gallbladder": { "tree": "partof", "concepts": ["FMA7202"], "notes": "Gallbladder." },
+    "kidney_right": { "tree": "partof", "concepts": ["FMA7204"], "notes": "Right kidney." },
+    "kidney_left": { "tree": "partof", "concepts": ["FMA7205"], "notes": "Left kidney." },
+    "bladder": { "tree": "partof", "concepts": ["FMA15900"], "notes": "Urinary bladder." },
+    "prostate": { "tree": "partof", "concepts": ["FMA9600"], "notes": "Prostate." },
+    "small_intestine": { "tree": "partof", "concepts": ["FMA7200"], "notes": "Union of duodenum, jejunum and ileum elements." },
+    "colon": {
+      "tree": "partof",
+      "concepts": ["FMA14541", "FMA14545", "FMA14546", "FMA14547"],
+      "optionalConceptNames": ["sigmoid colon"],
+      "notes": "Cecum, ascending, transverse and descending colon; include sigmoid colon only if an exact table name resolves. No sigmoid colon entry in the supplied 4.0 tables (sigmoid artery is not colon)."
+    },
+    "rectum": { "tree": "partof", "concepts": ["FMA14544"], "notes": "Rectum." },
+    "eye_right": { "tree": "partof", "concepts": ["FMA12514"], "notes": "Right eyeball." },
+    "eye_left": { "tree": "partof", "concepts": ["FMA12515"], "notes": "Left eyeball." },
+    "skin": { "tree": "partof", "concepts": ["FMA7163"], "notes": "Resolves to the single skin element FJ2810; do not hard-code that filename in the builder." },
+    "skeleton": {
+      "tree": "partof",
+      "concepts": ["FMA23881"],
+      "additionalSources": [{
+        "tree": "isa",
+        "concepts": ["FMA13303", "FMA23463", "FMA23466", "FMA9611", "FMA24476", "FMA24479", "FMA24485", "FMA13321", "FMA13394", "FMA16585", "FMA9612", "FMA23889", "FMA23914", "FMA24491", "FMA24492", "FMA24493"]
+      }],
+      "notes": "Axial system plus verified isa bone families: humerus, radius, ulna, femur, tibia, fibula, patella, clavicle, scapula, hip bone, metacarpals, carpals, finger phalanges, tarsals, metatarsals and toe phalanges. Deduplicate shared ELEMENT IDs across trees. Whole free-limb partof concepts contain vessels/fascia and are deliberately not used."
+    },
+    "testis_right": { "tree": "isa", "concepts": ["FMA7211"], "notes": "Right testis, from the isa tree." },
+    "testis_left": { "tree": "isa", "concepts": ["FMA7212"], "notes": "Left testis, from the isa tree." },
+    "ear_left": { "tree": "isa", "concepts": ["FMA52781"], "split": "positive_x", "notes": "Combined external-ear element; retain source x >= 0 for the left side." },
+    "ear_right": { "tree": "isa", "concepts": ["FMA52781"], "split": "negative_x", "notes": "Combined external-ear element; retain source x <= 0 for the right side." },
+    "thyroid": {
+      "tree": null,
+      "concepts": [],
+      "stylized": true,
+      "placement": { "tree": "isa", "concepts": ["FMA55099"] },
+      "notes": "No thyroid gland in BodyParts3D. Stylized butterfly, about 5 cm wide, anterior to the trachea and just inferior to the thyroid cartilage. Cartilage is a placement reference, not gland geometry."
+    }
+  }
+}

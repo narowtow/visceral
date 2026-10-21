@@ -29,6 +29,7 @@ export default function OrganBrowser({ values, color, onClose }: Props) {
         <input type="checkbox" role="switch" checked={layers[layer]} onChange={() => toggleLayer(layer)} />
         <span className="switch-track" aria-hidden="true" />
       </label>)}
+      <p className="layer-note">Skin and skeleton use neutral colors. Select either group or show its layer alone to see its data color.</p>
     </section>
   </>
 }
