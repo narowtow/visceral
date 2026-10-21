@@ -102,9 +102,14 @@ def load_cache(con):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=["build", "report", "hashes"])
+    parser.add_argument("command", choices=["build", "report", "hashes", "analyze"])
     parser.add_argument("--skip-parse", action="store_true")
     args = parser.parse_args(argv)
+    if args.command == "analyze":
+        from .analysis.run import run
+
+        run()
+        return
     if args.command == "hashes":
         print(json.dumps(hashes(), indent=2))
         return

@@ -191,3 +191,51 @@ They remain visible as warnings; unknown or changed defects fail validation.
 Tests use pytest's default `tmp_path` under the operating system's temporary
 directory. No repository `basetemp`, retention override, or cache path into
 `pipeline/data/` is configured, and tests do not write into `pipeline/data/`.
+
+## Reproducible descriptive analysis (Phase 4)
+
+From `pipeline/`, after a successful build, run:
+
+```powershell
+$env:PYTHONPATH="$PWD/src"
+.venv/Scripts/python.exe -m visceral_pipeline analyze
+```
+
+This verifies the interim cache's source fingerprints, aggregates the baseline
+and alternative mappings in DuckDB, and writes reusable tidy analysis parquet
+tables under `data/interim/analysis/`. It generates the [analysis write-up](../docs/analysis.md),
+five executed [notebooks](notebooks/), six 1600-pixel figures in `docs/figures/`,
+and compact chart datasets in `web/public/data/analysis/`. Existing production
+burden JSON is retained. No download or new dependency is needed.
+
+The helpers in `src/visceral_pipeline/analysis/` separate input aggregation,
+rank/period/sex comparisons, sensitivity, clustering, figures and publication.
+Notebooks call these helpers and read the regenerated tables. Each is executed
+with `python -m jupyter nbconvert --to notebook --execute --inplace`. Copied
+Windows environments may contain stale launcher paths; the command then tries
+`python -m nbconvert` with the same execution engine. Only if local kernel launch
+is unavailable does it execute cells in-process with IPython and save captured
+outputs using nbformat. `data/interim/analysis/notebook_execution.log` and
+`run_summary.json` record the path used; cell errors still fail the run.
+
+Country death ASDRs use WHO fine-age cause sums; DALYs and WLD use seven broad
+bins. Standard-population sensitivity reweights the same broad-bin rates under
+all five standards to isolate weight choice. WLD is the sum of available
+countries, with rates computed after count and population aggregation. COVID
+decomposition is additive accounting against observed 2019, not a causal
+counterfactual. The alternative CSV preserves the primary partition: TB/COVID
+move to systemic infections, diabetes to pancreas, and the whole inseparable
+mental/substance aggregate to brain; other circulatory stays unallocated.
+Unallocated shares use summed primary counts because published roots contain
+the documented source inconsistencies.
+
+Clustering gives countries equal weight and uses standardized log(1 + death
+ASDR per 100,000); the constant empty muscles feature is removed, without
+imputation. It compares k=2…8, with seed 2026, 50 k-means starts and 100 country
+bootstrap resamples per k, refitting the scaler and clustering each time.
+Selection requires median ARI ≥0.80, p05 ≥0.50 and minimum size ≥5, then the
+best silhouette (within 0.02 prefer smaller k). A fallback to the most stable
+candidate is explicitly recorded if none qualify. Ward and composition-share
+comparisons assess dependence on method. Stability is conditional on WHO point
+estimates, not their uncertainty. Distribution percentiles are descriptive,
+and all conclusions avoid causal or health-system-performance interpretations.
