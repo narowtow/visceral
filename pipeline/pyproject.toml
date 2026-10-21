@@ -1,10 +1,10 @@
 [project]
 name = "visceral-pipeline"
 version = "0.1.0"
-description = "Add your description here"
+description = "WHO Global Health Estimates -> validated organ-level burden data for the Visceral site"
 readme = "README.md"
 authors = [
-    { name = "narowtow", email = "justinlikestoplaytrumpet@gmail.com" }
+    { name = "narowtow" }
 ]
 requires-python = ">=3.14"
 dependencies = [
@@ -32,3 +32,11 @@ dev = [
     "pytest==9.1.1",
     "ruff>=0.17.1",
 ]
+
+[tool.pytest.ini_options]
+# Import the package from this checkout's src/ (the venv's editable install may point elsewhere).
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 110
