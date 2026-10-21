@@ -46,7 +46,7 @@
       "concepts": [],
       "stylized": true,
       "placement": { "tree": "isa", "concepts": ["FMA55099"] },
-      "notes": "No thyroid gland in BodyParts3D. Stylized butterfly, about 5 cm wide, anterior to the trachea and just inferior to the thyroid cartilage. Cartilage is a placement reference, not gland geometry."
+      "notes": "No thyroid gland in BodyParts3D. Stylized butterfly, about 5 cm wide, hugging the local cervical trachea with an anterior isthmus. Cartilage supplies height only, never anterior depth. Require at least 3 mm clearance inside the neck skin (3.5 mm before quantization)."
     }
   }
 }

@@ -175,30 +175,69 @@ class AnatomyBuilder:
                 bm.free()
         return obj
 
+    @staticmethod
+    def height_band(obj, bottom: float, top: float, center_x: float = 0, half_width: float = .2):
+        points = [v.co for v in obj.data.vertices if bottom <= v.co.y <= top and abs(v.co.x - center_x) < half_width]
+        if len(points) < 3:
+            raise ValueError(f"{obj.name}: insufficient vertices in height band {bottom:.4f}–{top:.4f}")
+        return tuple(tuple(fn(p[axis] for p in points) for axis in range(3)) for fn in (min, max))
+
     def thyroid(self, trachea, anchor):
-        low, high = self.bounds(trachea)
+        _low, high = self.bounds(trachea)
+        # Cartilage supplies height only. The airway node also contains thoracic
+        # bronchi: its global anterior bound is nowhere near the cervical tube.
+        center_y = min(anchor[0][1] - .012, high[1] - .022) if anchor else high[1] - .022
+        low, high = self.height_band(trachea, center_y - .019, center_y + .019)
         center_x = (low[0] + high[0]) / 2
-        # Just below the inferior cartilage edge, anterior to the airway.
-        center_y = anchor[0][1] - .012 if anchor else high[1] - .035
-        front_z = max(high[2] + .006, anchor[1][2] + .002 if anchor else high[2])
+        lateral_offset = (high[0] - low[0]) / 2 + .004
+        # Lobes flank and hug the tube, rather than sitting entirely in front.
+        lobe_z = high[2] - .003
         objects = []
         for side in (-1, 1):
             self.bpy.ops.mesh.primitive_uv_sphere_add(
                 segments=24, ring_count=16, radius=1,
-                location=(center_x + side * .014, center_y, front_z),
+                location=(center_x + side * lateral_offset, center_y, lobe_z),
             )
             lobe = self.bpy.context.object
             lobe.scale = (.009, .019, .0075)
             lobe.rotation_euler[2] = side * math.radians(-12)
             objects.append(lobe)
+        # Sample the airway again at the lower isthmus height. Its posterior
+        # face sits 3 mm anterior to that local tracheal surface.
+        isthmus_y = center_y - .005
+        _low, bridge_airway = self.height_band(trachea, isthmus_y - .004, isthmus_y + .004)
         self.bpy.ops.mesh.primitive_uv_sphere_add(
             segments=24, ring_count=12, radius=1,
-            location=(center_x, center_y - .005, front_z + .002),
+            location=(center_x, isthmus_y, bridge_airway[2] + .006),
         )
         bridge = self.bpy.context.object
-        bridge.scale = (.016, .005, .006)
+        bridge.scale = (.016, .005, .003)
         objects.append(bridge)
         return self.join(objects, "thyroid")
+
+    @staticmethod
+    def skin_clearance(obj, skin, minimum: float = .0035) -> float:
+        from mathutils import Vector
+        from mathutils.bvhtree import BVHTree
+
+        tree = BVHTree.FromPolygons(
+            [vertex.co for vertex in skin.data.vertices],
+            [polygon.vertices[:] for polygon in skin.data.polygons],
+            all_triangles=True,
+        )
+        distances = []
+        for vertex in obj.data.vertices:
+            # Surface distance alone also accepts points outside the body.
+            # Both rays must exit the enclosing skin, with outward normals.
+            for direction in (Vector((0, 0, 1)), Vector((0, 0, -1))):
+                hit, normal, _face, _distance = tree.ray_cast(vertex.co, direction)
+                if hit is None or normal.dot(direction) <= 0:
+                    raise ValueError(f"{obj.name}: vertex outside neck skin at {tuple(vertex.co)}")
+            _point, _normal, _face, distance = tree.find_nearest(vertex.co)
+            if distance is None or distance < minimum:
+                raise ValueError(f"{obj.name}: skin clearance {distance} m is below {minimum} m")
+            distances.append(distance)
+        return min(distances)
 
     def lung_envelope(self, obj) -> None:
         # Direct voxel remeshing of sparse trees still leaves tubes. A hull of
@@ -317,6 +356,16 @@ class AnatomyBuilder:
                 self.clean_mesh(obj)
                 if self.triangle_count(obj) > budgets[name]:
                     raise ValueError(f"{name}: cleanup exceeded triangle budget")
+                if name == "thyroid":
+                    clearance = self.skin_clearance(obj, objects["skin"])
+                    entry["placement"] = {
+                        "reference": "local cervical trachea; cartilage height only",
+                        "minimum_skin_clearance_m": clearance,
+                        # Reserve 0.5 mm beyond the required margin for Meshopt quantization.
+                        "required_skin_clearance_m": .0035,
+                    }
+                    obj["placement_reference"] = entry["placement"]["reference"]
+                    progress(f"  thyroid: minimum neck-skin clearance {clearance * 1000:.2f} mm")
                 self.neutral_material(obj)
                 obj["organ_id"] = owners[name]
                 # A JSON string is portable across Blender IDProperty versions;
