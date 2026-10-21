@@ -1,4 +1,4 @@
-"""Offline parse/cache/validate/aggregate/export commands."""
+"""Acquire source inputs; parse/cache/validate/aggregate/export/analyze offline."""
 
 import argparse
 import hashlib
@@ -102,9 +102,25 @@ def load_cache(con):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=["build", "report", "hashes", "analyze"])
+    parser.add_argument("command", choices=["acquire", "build", "report", "hashes", "analyze"])
     parser.add_argument("--skip-parse", action="store_true")
+    parser.add_argument("--who", action="store_true", help="Acquire WHO inputs only (no source flags: both)")
+    parser.add_argument("--bodyparts3d", action="store_true", help="Acquire BodyParts3D inputs only")
+    parser.add_argument(
+        "--force", action="store_true", help="Re-download even matching files; retain hash checks"
+    )
     args = parser.parse_args(argv)
+    if args.command != "acquire" and (args.who or args.bodyparts3d or args.force):
+        parser.error("--who, --bodyparts3d and --force apply only to acquire")
+    if args.command == "acquire":
+        from .acquire import acquire
+
+        if args.skip_parse:
+            parser.error("--skip-parse does not apply to acquire")
+        results = acquire(who=args.who, bodyparts3d=args.bodyparts3d, force=args.force)
+        if any(result.status == "FAILED" for result in results):
+            parser.exit(1, "Acquisition failed for one or more files; see summary above.\n")
+        return
     if args.command == "analyze":
         from .analysis.run import run
 

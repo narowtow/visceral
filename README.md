@@ -89,17 +89,14 @@ Open the local URL printed by Vite. `npm test` runs Vitest once; `npm run build`
 
 ### Pipeline and analysis
 
-Raw WHO files are not committed. **There is currently no acquire/download CLI command.** Before building:
+Raw WHO files are not committed. `acquire --who` downloads all WHO inputs listed in [`sources.yaml`](pipeline/config/sources.yaml), including the reference-rate workbooks and standard-population PDF, into `pipeline/data/raw/who_ghe2023/`. It preserves each full filename while removing the URL query. The five standard populations are already transcribed in [`standard_populations.csv`](pipeline/config/standard_populations.csv).
 
-1. Open [`pipeline/config/sources.yaml`](pipeline/config/sources.yaml). For each entry under `who_ghe_2023.files`, concatenate its value with `base_url` and download that URL. This includes the deaths and DALY workbooks for the listed years, both reference-rate workbooks and the standard-population PDF.
-2. Save them in `pipeline/data/raw/who_ghe2023/`, using the URL's filename **without the `?sfvrsn=…` query**. Keep the full filename, including the extra suffix on the 2023 deaths workbook. The five standard populations are already transcribed in [`standard_populations.csv`](pipeline/config/standard_populations.csv).
-3. Keep the pinned SHA-256 values unchanged. Builds verify them and reject different inputs; `hashes` records new hashes and should only be used after reviewing a deliberate source update. The old acquire-command comment in the YAML does not describe an implemented command.
-
-From the repository root, these commands work in PowerShell and macOS/Linux shells:
+From the repository root, these commands work in PowerShell and macOS/Linux shells (acquisition needs internet access):
 
 ```sh
 cd pipeline
 uv sync --locked
+uv run python -m visceral_pipeline acquire --who
 uv run python -m visceral_pipeline build
 uv run python -m visceral_pipeline analyze
 uv run python -m visceral_pipeline report
@@ -107,9 +104,17 @@ uv run python -m visceral_pipeline report
 
 `build` parses, caches, validates and exports real data; `build --skip-parse` reuses a fingerprint-checked cache. `analyze` regenerates analysis tables, figures, chart JSON, the write-up and five executed notebooks. `report` refreshes the validation report. Once dependencies and raw inputs are present, these stages run offline. See the [pipeline guide](pipeline/README.md) for copied-environment import paths and notebook-execution fallbacks.
 
+With no source flags, `acquire` downloads both WHO and BodyParts3D; `--who` or `--bodyparts3d` selects one. Matching files are skipped. `--force` downloads again but still checks known hashes; a mismatch never replaces the existing file. Null hashes are recorded on first successful acquisition with an explicit message: these are observed fingerprints, not independent verification. Review and commit the new BodyParts3D pins. Known pins are never silently changed.
+
 ### Rebuild the anatomy (optional)
 
-Download BodyParts3D 4.0 using the sources in [`sources.yaml`](pipeline/config/sources.yaml) and the [anatomy guide](assets/README.md). The build needs both `partof` and `isa` mapping tables **and all referenced OBJ elements**, under `assets/source/bodyparts3d/`; tables alone are insufficient. The expected OBJ layout is `obj/{partof|isa}_BP3D_4.0_obj_99/`. Install the web dependencies first for the compression step.
+From the repository root, acquire BodyParts3D 4.0 and its mapping tables:
+
+```sh
+uv run --project pipeline python -m visceral_pipeline acquire --bodyparts3d
+```
+
+This downloads both `partof` and `isa` OBJ archives and extracts them into `assets/source/bodyparts3d/obj/{partof|isa}_BP3D_4.0_obj_99/`. Cached matching ZIPs are re-extracted to restore missing OBJ files. Review the first-use hashes recorded in [`sources.yaml`](pipeline/config/sources.yaml). Install the web dependencies before the compression step. See the [anatomy guide](assets/README.md) for source and geometry details.
 
 From the repository root in PowerShell, adjust the Blender executable path to your installation:
 
@@ -125,7 +130,7 @@ On macOS/Linux, replace `& $blender` with `blender` (or your executable's path);
 
 | Area | Current test count | Coverage |
 |---|---:|---|
-| Pipeline and analysis | **27**: 18 core + 9 analysis | Parsing, schemas, hierarchy partition, standardization, reconciliation, contract exports, ranking, resampling and mapping sensitivity |
+| Pipeline and analysis | **50**: 18 core + 9 analysis + 23 acquisition | Parsing, schemas, hierarchy partition, standardization, reconciliation, contract exports, ranking, resampling, mapping sensitivity and fake-opener download/extraction checks |
 | Web | **46** across 14 files | Data loading, selectors, URL state, filters, keyboard interactions, errors, model decoding and scene runtime |
 | Anatomy | **9** source/export tests + **1** Blender-only geometry test | Source resolution, contract mesh names, metadata and connected lung-envelope geometry |
 

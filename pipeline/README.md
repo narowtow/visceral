@@ -1,18 +1,57 @@
 # Visceral data pipeline
 
-This package transforms the locally downloaded WHO Global Health Estimates 2023
-workbooks into burden associated with causes mapped to organs. It never downloads
-inputs and never estimates an individual's organ health.
+This package acquires WHO and BodyParts3D source inputs, then transforms WHO
+Global Health Estimates 2023 workbooks into burden associated with causes mapped
+to organs. Processing runs offline after acquisition; it never estimates an
+individual's organ health.
 
-## Run offline
+## Acquire source inputs
 
-Run from the repository root in PowerShell. The explicit import path selects this
-checkout even when a copied virtual environment has an editable install pointing
-to the original repository.
+From `pipeline/`, install the locked dependencies and acquire the needed sources:
+
+```sh
+uv sync --locked
+uv run python -m visceral_pipeline acquire --who
+uv run python -m visceral_pipeline acquire --bodyparts3d
+```
+
+`acquire` without source flags selects both; specifying both flags also selects
+both. WHO's 19 manifest files go into `data/raw/who_ghe2023/`, keeping full
+filenames (including the 2023 deaths suffix) without the URL's `?sfvrsn` query.
+BodyParts3D's seven files go into `assets/source/bodyparts3d/` at the repo root.
+Both OBJ ZIPs are extracted into `obj/<archive stem>/`, as expected by the
+Blender build. Flat and archive-folder ZIP layouts are supported. Matching
+cached ZIPs are re-extracted to restore missing elements.
+
+Acquisition is the only pipeline command that contacts source servers. It uses
+standard-library HTTP, a descriptive User-Agent, streaming sibling temporary
+files and atomic replacement. Transient HTTP/connection errors retry up to three
+attempts, with one- and two-second backoff. Known SHA-256 values must match;
+failed downloads and hash mismatches never replace an existing input. Existing
+files with matching pins skip HTTP. `--force` re-downloads them, still enforcing
+known pins. Extraction stages and CRC-checks the archive, rejecting traversal,
+symlinks, duplicate paths and unexpected nested OBJ layouts before publishing.
+A summary table reports status, size and checksum per file; any failed file
+causes a nonzero command exit, while other planned files are still attempted.
+
+The BodyParts3D hashes initially contain `null`. Successful acquisition computes
+and records those hashes in `config/sources.yaml` without rewriting existing
+pins, citations or comments, and prints a **first-use** message. A recorded hash
+is an observed fingerprint, not independent source authentication: review and
+commit it before relying on subsequent verification. Unpinned existing files
+are downloaded again before recording a hash. No hash is recorded for a failed
+download or extraction. The existing `hashes` command deliberately updates WHO
+pins and remains reserved for reviewed source updates; acquisition never changes
+a known pin.
+
+## Process offline
+
+After acquiring inputs, run from the repository root in PowerShell. The explicit
+import path selects this checkout even when a copied virtual environment has an
+editable install pointing to the original repository.
 
 ```powershell
 $env:PYTHONPATH = "$PWD/pipeline/src"
-pipeline/.venv/Scripts/python.exe -m visceral_pipeline hashes
 pipeline/.venv/Scripts/python.exe -m visceral_pipeline build
 pipeline/.venv/Scripts/python.exe -m visceral_pipeline build --skip-parse
 pipeline/.venv/Scripts/python.exe -m visceral_pipeline report

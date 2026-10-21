@@ -1,6 +1,6 @@
 # Pinned source manifest for the Visceral pipeline.
-# Raw files are downloaded to pipeline/data/raw/ (git-ignored) and verified against sha256.
-# sha256 values are filled in by `visceral acquire --record-hashes` on first download.
+# `python -m visceral_pipeline acquire` downloads inputs into git-ignored source directories.
+# Known SHA-256 values are verified; null values are recorded on first successful acquisition.
 
 who_ghe_2023:
   title: "Global Health Estimates 2023"
@@ -68,9 +68,18 @@ bodyparts3d_4_0:
   base_url: "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/LATEST/"
   files:
     - partof_BP3D_4.0_obj_99.zip
+    - isa_BP3D_4.0_obj_99.zip
     - partof_parts_list_e.txt
     - partof_element_parts.txt
     - partof_inclusion_relation_list.txt
     - isa_parts_list_e.txt
     - isa_element_parts.txt
   local_dir: "assets/source/bodyparts3d"
+  sha256:
+    "partof_BP3D_4.0_obj_99.zip": null
+    "isa_BP3D_4.0_obj_99.zip": null
+    "partof_parts_list_e.txt": null
+    "partof_element_parts.txt": null
+    "partof_inclusion_relation_list.txt": null
+    "isa_parts_list_e.txt": null
+    "isa_element_parts.txt": null
