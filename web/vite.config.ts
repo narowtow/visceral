@@ -5,8 +5,9 @@ import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'vitest/config'
 
 const contracts = fileURLToPath(new URL('../contracts', import.meta.url))
-export default defineConfig(({ command, mode }) => ({
-  base: command === 'build' ? '/visceral/' : '/',
+export default defineConfig(({ command, mode, isPreview }) => ({
+  // GitHub Pages serves the project at /visceral/; `vite preview` must match the build.
+  base: command === 'build' || isPreview ? '/visceral/' : '/',
   plugins: [react(), tailwindcss(), {
     name: 'fixture-data',
     configureServer(server) {

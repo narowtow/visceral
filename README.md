@@ -11,12 +11,19 @@ Explore how age structure, sex and analytical choices change the apparent distri
 [**Live demo**](https://narowtow.github.io/visceral/) *(coming soon)* · [**Analysis write-up**](docs/analysis.md) · [**Notebooks**](pipeline/notebooks/)
 <!-- READY: [**Live demo**](https://narowtow.github.io/visceral/) · [**Analysis write-up**](docs/analysis.md) · [**Notebooks**](pipeline/notebooks/) -->
 
-![Visceral explorer showing the 3D body, country and burden filters, organ list and selected-organ details; screenshot coming soon.](docs/screenshots/explorer.png)
+![Visceral explorer showing the 3D body colored by age-standardized death rates, filters, the organ list and the heart's details.](docs/screenshots/explorer.png)
 
-<!-- Reserved screenshots; uncomment after capture:
-![Selected-organ panel with burden rates, trends and mapped causes.](docs/screenshots/organ-panel.png)
-![Mobile explorer with filters and the accessible organ browser.](docs/screenshots/mobile.png)
--->
+<table>
+  <tr>
+    <td width="66%"><img src="docs/screenshots/organ-panel.png" alt="Focused view of Japan's lungs and airways with the age-standardized rate and its 2000–2023 trend."></td>
+    <td width="34%"><img src="docs/screenshots/mobile.png" alt="Mobile layout of the explorer showing India, female, DALYs."></td>
+  </tr>
+  <tr>
+    <td colspan="2"><img src="docs/screenshots/analysis.png" alt="Analysis page scatter plot comparing crude and age-standardized heart death rates for 185 countries."></td>
+  </tr>
+</table>
+
+Screenshots are reproducible: `npm run build`, `npx vite preview`, then `node scripts/screenshots.mjs` in `web/`.
 
 ## The question & key findings
 
