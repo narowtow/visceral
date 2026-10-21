@@ -4,6 +4,7 @@ import manifest from '@contracts/fixtures/data/manifest.json'
 import causes from '@contracts/fixtures/data/causes.json'
 import world from '@contracts/fixtures/data/locations/WLD.json'
 import japan from '@contracts/fixtures/data/locations/JPN.json'
+import summary from '@contracts/fixtures/data/summary/2023.json'
 import { useExplorer } from './state/store'
 import { defaults } from './state/url'
 import App from './App'
@@ -19,7 +20,7 @@ beforeEach(() => {
   useExplorer.setState({ selection: defaults, theme: 'system', isolate: false, rescale: false, layers: { skin: true, skeleton: false, organs: true } })
   vi.spyOn(globalThis, 'fetch').mockImplementation(async input => {
     const path = String(input)
-    const json = path.endsWith('manifest.json') ? manifest : path.endsWith('causes.json') ? causes : path.endsWith('JPN.json') ? japan : world
+    const json = path.endsWith('manifest.json') ? manifest : path.endsWith('causes.json') ? causes : path.endsWith('summary/2023.json') ? summary : path.endsWith('JPN.json') ? japan : world
     return new Response(JSON.stringify(json), { headers: { 'Content-Type': 'application/json' } })
   })
 })
@@ -68,7 +69,31 @@ describe('explorer shell without WebGL', () => {
       window.dispatchEvent(new HashChangeEvent('hashchange'))
     })
     expect(screen.getByRole('link', { name: 'About' })).toHaveAttribute('aria-current', 'page')
-    expect(screen.getByText('Educational visualization of population-level statistics. It does not provide diagnosis, treatment advice, or individual risk estimates. Anatomical associations are simplified; see Methodology.')).toBeVisible()
+    expect(await screen.findByText('Educational visualization of population-level statistics. It does not provide diagnosis, treatment advice, or individual risk estimates. Anatomical associations are simplified; see Methodology.')).toBeVisible()
     expect(screen.getByRole('link', { name: 'CC Attribution 4.0 International' })).toHaveAttribute('href', 'https://creativecommons.org/licenses/by/4.0/')
+  })
+  it('navigates directly to Quiz and preserves its route when a quiz selection changes', async () => {
+    window.history.replaceState(null, '', '#/quiz')
+    render(<App />)
+    expect(await screen.findByRole('heading', { level: 1, name: 'Make a connection.' })).toBeVisible()
+    expect(screen.getByRole('link', { name: 'Quiz' })).toHaveAttribute('aria-current', 'page')
+    fireEvent.click(screen.getByRole('button', { name: 'Start Find the organ' }))
+    expect(await screen.findByRole('listbox', { name: 'Organ groups' })).toBeVisible()
+    fireEvent.click(screen.getByRole('option', { name: 'Brain' }))
+    expect(window.location.hash).toContain('#/quiz?')
+    expect(screen.getByRole('button', { name: 'Next question' })).toBeVisible()
+  })
+  it('loads the comparison matrix only on request and answers a Higher or lower question', async () => {
+    window.history.replaceState(null, '', '#/quiz')
+    render(<App />)
+    fireEvent.click(await screen.findByRole('button', { name: 'Prepare Higher or lower' }))
+    const start = await screen.findByRole('button', { name: 'Start Higher or lower' })
+    expect(start).toHaveFocus()
+    fireEvent.click(start)
+    expect(screen.getByRole('heading', { name: /which had more age-standardized deaths/ })).toBeVisible()
+    fireEvent.click(screen.getAllByRole('button', { name: /Higher age-standardized death rate/ })[0])
+    expect(document.querySelectorAll('.comparison-values dd')).toHaveLength(2)
+    expect(screen.getByText(/Synthetic fixture data: these comparisons/)).toBeVisible()
+    expect(screen.getByRole('button', { name: 'Next question' })).toBeVisible()
   })
 })

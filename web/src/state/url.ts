@@ -22,7 +22,7 @@ export function parseHash(hash: string, manifest: Manifest): Selection {
 }
 export const routeFromHash = (hash: string) => {
   const route = hash.replace(/^#\/?/, '').split('?')[0]
-  return ['explore', 'analysis', 'methodology', 'about'].includes(route) ? route : 'explore'
+  return ['explore', 'analysis', 'methodology', 'about', 'quiz'].includes(route) ? route : 'explore'
 }
 export function serializeHash(s: Selection, route = 'explore'): string {
   return `#/${route}?${new URLSearchParams({ location: s.location, sex: s.sex, age: s.age, year: String(s.year), measure: s.measure, metric: s.metric, selectedOrgan: s.selectedOrgan ?? 'none' })}`

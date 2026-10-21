@@ -5,12 +5,23 @@ React 19 + TypeScript explorer for population-level public-health burden. Data f
 ## Run locally
 
 ```sh
-npm run dev:fixture
+npm run dev
 ```
 
-This serves the synthetic contract fixture at `/fixture-data/` using development-only Vite middleware. No files are copied into `public/data/`. The app visibly labels fixture values as synthetic, not WHO estimates.
+This serves the checked-in WHO export from `public/data/` (185 countries plus World). The real-data banner reads “WHO GHE 2023 · Population-level burden associated with mapped causes.”
 
-`npm run dev` reads pipeline output from `public/data/`. Override the data URL with `VITE_DATA_BASE` (include its trailing slash). Production builds use `/visceral/` as the GitHub Pages project base.
+`npm run dev:fixture` serves the synthetic contract fixture at `/fixture-data/` using development-only Vite middleware. It shows the development/synthetic banner and never copies files into `public/data/`. Override the data URL with `VITE_DATA_BASE` (include its trailing slash). Production builds use `/visceral/` as the GitHub Pages project base.
+
+## Learn and practice
+
+- Every contract group has a concise function summary, key structures, mapping explanation and memorable fact in `src/content/organs.ts`. The panel shows the summary and expands native details for the rest. `src/content/sources.ts` holds the book-level OpenStax citation, mapping attribution and disclaimer text. No unverified chapter numbers or textbook URLs are asserted.
+- `#/methodology` explains the source, rate calculations, distinct country-deaths versus DALY/World standardization methods, approximation bias, mapping policy, unallocated shares, pinned WHO inconsistencies, model provenance and reproduction commands. Its searchable mapping table fetches the active dataset's `causes.json`; hierarchy rows are optional and explicitly marked as not summed. Numerical validation highlights are a snapshot of `pipeline/reports/validation.md` and should be reviewed when that report changes.
+- `#/about` names the creator and AI assistance, credits WHO/BodyParts3D/OpenStax/libraries, and provides the medical disclaimer and WHO non-endorsement statement.
+- `#/quiz` offers ten-question anatomy and higher-rate modes. Anatomy accepts body picks or the same keyboard organ list; hover names are hidden and materials stay neutral until feedback outlines the correct group. It uses modeled internal organs, with fixed context layers independent of Explore's presentation settings.
+- Comparison questions use one requested year's compact summary matrix, country deaths ASDR, Both sexes and All ages. A stable seed drives sampling; null, negative, nonfinite and near-tied values are rejected. The gap must be at least 10% of the larger value. Zero remains a valid value. Question values and answers are frozen for the session; feedback prints enough significant digits to preserve tiny nonzero rates.
+- Best scores use `visceral.quiz.v1.{who|fixture}.{find|higher}` in localStorage. Storage access and writes are guarded; a session still works if storage is blocked. No scores or answers are transmitted. End screens provide a review of all answers. Change the seed under “Choose a question set” for another deterministic set.
+
+Static pages, quizzes, charts and anatomy are loaded in separate chunks. New layouts stack at narrow widths; wide cause tables and reproduction commands scroll inside their containers. Browser checks at 375 px remain necessary for actual layout verification.
 
 ## Anatomy
 

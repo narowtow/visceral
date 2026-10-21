@@ -21,12 +21,15 @@ interface Props {
   values: Record<string, Value>; color: (v: Value) => string; theme: 'light' | 'dark'
   onApi: (api: SceneApi | null) => void; onModel: (model: string) => void
   onModelError?: (error: Error) => void
+  onSelect?: (id: string) => void
+  quiz?: boolean
 }
 // Three's raycaster stops descending when a decorative group's raycast returns false.
 const noOutlinePicking = () => false
 const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+const quizLayers = { skin: true, skeleton: false, organs: true }
 
-function Anatomy({ root: source, values, color, theme, onApi }: Props & { root: Object3D }) {
+function Anatomy({ root: source, values, color, theme, onApi, onSelect, quiz }: Props & { root: Object3D }) {
   const { root, index } = useMemo(() => prepareAnatomy(source), [source])
   const controls = useRef<CameraControls>(null)
   const tooltip = useRef<HTMLDivElement | null>(null)
@@ -37,8 +40,10 @@ function Anatomy({ root: source, values, color, theme, onApi }: Props & { root: 
   const hovered = useRef<Mesh[]>([])
   const selected = useExplorer(s => s.selection.selectedOrgan)
   const selectOrgan = useExplorer(s => s.selectOrgan)
-  const layers = useExplorer(s => s.layers)
-  const isolate = useExplorer(s => s.isolate)
+  const explorerLayers = useExplorer(s => s.layers)
+  const explorerIsolate = useExplorer(s => s.isolate)
+  const layers = quiz ? quizLayers : explorerLayers
+  const isolate = !quiz && explorerIsolate
   const down = useRef<PointerStart | null>(null)
   useLayoutEffect(() => {
     const { position: p, center: c } = frame
@@ -95,7 +100,8 @@ function Anatomy({ root: source, values, color, theme, onApi }: Props & { root: 
     }
     if (tooltip.current) {
       const stylized = hovered.current.some(mesh => mesh.userData.stylized) ? ' · Stylized anatomy' : ''
-      tooltip.current.textContent = `${organs.find(o => o.id === id)?.label} · ${formatValue(values[id] ?? null)}${stylized}`
+      // A quiz must not reveal the hovered organ's name before an answer.
+      tooltip.current.textContent = quiz ? 'Select this structure' : `${organs.find(o => o.id === id)?.label} · ${formatValue(values[id] ?? null)}${stylized}`
       tooltip.current.hidden = false
     }
     canvas.current.style.cursor = 'pointer'
@@ -118,7 +124,7 @@ function Anatomy({ root: source, values, color, theme, onApi }: Props & { root: 
       onPointerUp={(e: ThreeEvent<PointerEvent>) => {
         const start = down.current; down.current = null
         const id = tappedOrgan(start, e.nativeEvent.clientX, e.nativeEvent.clientY, e.object.userData.organId)
-        if (id) { e.stopPropagation(); selectOrgan(id) }
+        if (id) { e.stopPropagation(); (onSelect ?? selectOrgan)(id) }
       }} onPointerCancel={() => { down.current = null }} />
     {/* Attach to the real mesh: copying its not-yet-updated world matrix created
         a unit-sized outline at the origin (the reported white ellipse). */}
@@ -160,7 +166,7 @@ export default function BodyScene(props: Props) {
   const [modelError, setModelError] = useState<string | null>(null)
   const onModelError = useCallback((error: Error) => setModelError(error.message), [])
   return <Boundary fallback={<div className="canvas-fallback"><p>The 3D view is unavailable on this device.</p><p>Explore every group using the organ list and charts.</p></div>}>
-    <Canvas frameloop="demand" dpr={[1, 1.5]} camera={{ position: [0, 1, 3.05], fov: 38, near: .01, far: 30 }} gl={{ antialias: true, alpha: true }} aria-label="Interactive schematic body. Use the organ list and view buttons for keyboard access.">
+    <Canvas frameloop="demand" dpr={[1, 1.5]} camera={{ position: [0, 1, 3.05], fov: 38, near: .01, far: 30 }} gl={{ antialias: true, alpha: true }} aria-label="Interactive anatomy. Use the organ list and view buttons for keyboard access.">
       <Model {...props} onModelError={onModelError} />
     </Canvas>
     <div className="body-tooltip" hidden aria-hidden="true" />

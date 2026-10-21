@@ -14,6 +14,7 @@ describe('URL state', () => {
     expect(parseHash('#/explore?location=XYZ&sex=invalid&age=oops&year=2001&measure=no&metric=bad&selectedOrgan=no', manifest)).toEqual(defaults)
     expect(routeFromHash('#/unknown')).toBe('explore')
     expect(routeFromHash('#/about?year=2023')).toBe('about')
+    expect(routeFromHash('#/quiz?year=2023')).toBe('quiz')
   })
   it('converts age-standardized rates to crude rates for a specific age', () => {
     expect(parseHash('#/explore?age=5_14&metric=ageStdRate', manifest).metric).toBe('rate')

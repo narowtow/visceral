@@ -2,12 +2,12 @@ import { lazy, Suspense, useState } from 'react'
 import { organs } from '../data/contract'
 import type { Causes, LocationShard, Manifest, Selection, Value } from '../data/contract'
 import { leadingCauses, ranking, selectedValue, trend } from '../data/selectors'
-import { descriptions } from '../content/organs'
+import OrganEducation from './OrganEducation'
+import { WHO_URL } from '../content/sources'
 import { formatValue, units } from '../lib/format'
 import { useExplorer } from '../state/store'
 const TrendChart = lazy(() => import('./Charts').then(m => ({ default: m.TrendChart })))
 const RankedChart = lazy(() => import('./Charts').then(m => ({ default: m.RankedChart })))
-export const WHO_URL = 'https://www.who.int/data/gho/data/themes/mortality-and-global-health-estimates'
 
 export default function OrganPanel({ manifest, shard, selection, causes, color }: { manifest: Manifest; shard?: LocationShard; selection: Selection; causes?: Causes; color: (v: Value) => string }) {
   const [causeTable, setCauseTable] = useState(false)
@@ -22,7 +22,7 @@ export default function OrganPanel({ manifest, shard, selection, causes, color }
   return <aside className="detail-panel" aria-labelledby="detail-title">
     {organ ? <>
       <div className="detail-title-row"><span className="organ-emblem" style={{ color: color(value) }} aria-hidden="true">{organ.kind === 'systemic' ? '◈' : '◉'}</span><div><span className="eyebrow">{organ.kind === 'systemic' ? 'Systemic & other' : organ.system}</span><h1 id="detail-title">{organ.label}</h1></div><button className="icon-button close-selection" aria-label="Clear selection and show overview" onClick={() => selectOrgan(null)}>×</button></div>
-      <p className="organ-description">{descriptions[organ.id]}</p>
+      <OrganEducation id={organ.id} />
       {!organ.modeled && <p className="subtle-note">This group is available in the list and charts; it has no model mesh.</p>}
       <div className="stat-block"><h2>{units(selection)}</h2><div className={`big-stat ${value === null ? 'unavailable' : ''}`}>{formatValue(value)}<span>{value !== null && (selection.metric === 'count' ? selection.measure : 'per 100k')}</span></div>{value === null && <p className="muted">Unavailable for these filters. Missing values are not zero.</p>}</div>
       <Suspense fallback={<p className="loading">Loading trend…</p>}><TrendChart data={trend(shard, manifest.years, selection, organ.id)} unit={units(selection)} /></Suspense>

@@ -29,6 +29,10 @@ export interface LocationShard {
   topCauses: Partial<Record<Measure, Dict<Dict<Dict<TopCause[]>>>>>
 }
 export interface TopCause { code: number; count: Value; rate: Value }
+export interface Summary {
+  schemaVersion: number; year: number; locations: string[]
+  values: Partial<Record<Measure, Partial<Record<Sex, Partial<Record<Metric, Value[][]>>>>>>
+}
 export interface Causes {
   schemaVersion: number; mappingVersion: string
   causes: { code: number; name: string; parent: number | null; level: number; organ: string | null; relation: string; rationale: string }[]

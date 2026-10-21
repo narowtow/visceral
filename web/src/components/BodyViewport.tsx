@@ -18,9 +18,11 @@ interface Props {
   theme: 'dark' | 'light'
   narrow: boolean
   openList: () => void
+  onSelect?: (id: string) => void
+  quiz?: boolean
 }
 
-export default function BodyViewport({ values, color, theme, narrow, openList }: Props) {
+export default function BodyViewport({ values, color, theme, narrow, openList, onSelect, quiz }: Props) {
   const selectedId = useExplorer(s => s.selection.selectedOrgan)
   const selected = organs.find(o => o.id === selectedId)
   const layers = useExplorer(s => s.layers)
@@ -33,7 +35,7 @@ export default function BodyViewport({ values, color, theme, narrow, openList }:
     apiRef.current = api
     setReady(Boolean(api))
   }, [])
-  const canFocus = selected?.modeled && layers[selected.layer as Layer]
+  const canFocus = selected?.modeled && (quiz || layers[selected.layer as Layer])
 
   return <div className="body-stage">
     <div className="stage-heading">
@@ -42,7 +44,7 @@ export default function BodyViewport({ values, color, theme, narrow, openList }:
     </div>
     <Boundary fallback={<div className="canvas-fallback">The anatomy view could not load. Use the organ list to explore.</div>}>
       <Suspense fallback={<div className="canvas-fallback">Loading the anatomy view…</div>}>
-        <BodyScene values={values} color={color} theme={theme} onApi={onApi} onModel={setModel} />
+        <BodyScene values={values} color={color} theme={theme} onApi={onApi} onModel={setModel} onSelect={onSelect} quiz={quiz} />
       </Suspense>
     </Boundary>
     <div className="view-controls" aria-label="View controls">
@@ -56,7 +58,7 @@ export default function BodyViewport({ values, color, theme, narrow, openList }:
     <div className="body-actions">
       {narrow && <button className="primary-button" onClick={openList}>Organ list</button>}
       <button disabled={!canFocus || !ready} onClick={() => apiRef.current?.focus()}>⌖ Focus</button>
-      <button aria-pressed={isolate} disabled={!selected?.modeled} onClick={toggleIsolate}>◈ Isolate</button>
+      {!quiz && <button aria-pressed={isolate} disabled={!selected?.modeled} onClick={toggleIsolate}>◈ Isolate</button>}
       <button disabled={!ready} onClick={() => apiRef.current?.reset()}>Reset view</button>
     </div>
     <p className="stage-hint">Drag to rotate · Scroll to zoom · Select an organ</p>
