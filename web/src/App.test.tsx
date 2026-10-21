@@ -1,0 +1,74 @@
+import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import manifest from '@contracts/fixtures/data/manifest.json'
+import causes from '@contracts/fixtures/data/causes.json'
+import world from '@contracts/fixtures/data/locations/WLD.json'
+import japan from '@contracts/fixtures/data/locations/JPN.json'
+import { useExplorer } from './state/store'
+import { defaults } from './state/url'
+import App from './App'
+
+vi.mock('./scene/BodyScene', () => ({ default: () => <div data-testid="mock-canvas">Canvas omitted in tests</div> }))
+// These tests exercise chart data and tables, without jsdom layout measurements.
+vi.mock('recharts', () => ({
+  ResponsiveContainer: () => <div>Trend plot</div>, LineChart: () => null,
+  CartesianGrid: () => null, Line: () => null, Tooltip: () => null, XAxis: () => null, YAxis: () => null,
+}))
+beforeEach(() => {
+  window.history.replaceState(null, '', '#/explore')
+  useExplorer.setState({ selection: defaults, theme: 'system', isolate: false, rescale: false, layers: { skin: true, skeleton: false, organs: true } })
+  vi.spyOn(globalThis, 'fetch').mockImplementation(async input => {
+    const path = String(input)
+    const json = path.endsWith('manifest.json') ? manifest : path.endsWith('causes.json') ? causes : path.endsWith('JPN.json') ? japan : world
+    return new Response(JSON.stringify(json), { headers: { 'Content-Type': 'application/json' } })
+  })
+})
+afterEach(() => { window.history.replaceState(null, '', '/') })
+
+describe('explorer shell without WebGL', () => {
+  it('labels fixtures, selects organs through the list, and exposes exact trend tables', async () => {
+    render(<App />)
+    expect(await screen.findByText('Synthetic data · not WHO estimates')).toBeVisible()
+    const list = await screen.findByRole('listbox', { name: 'Organ groups' })
+    const kidneys = within(list).getByRole('option', { name: /Kidneys/ })
+    kidneys.focus(); fireEvent.keyDown(kidneys, { key: 'Enter' })
+    expect(screen.getByRole('heading', { level: 1, name: 'Kidneys' })).toBeVisible()
+    expect(window.location.hash).toContain('selectedOrgan=kidneys')
+    const trendSection = await screen.findByRole('region', { name: 'Trend' })
+    fireEvent.click(within(trendSection).getByRole('button', { name: 'Show table' }))
+    const table = within(trendSection).getByRole('table')
+    expect(within(table).getByRole('rowheader', { name: '2000' })).toBeVisible()
+    expect(within(table).getAllByRole('row')).toHaveLength(manifest.years.length + 1)
+    expect(screen.getByRole('status')).toHaveTextContent('Kidneys selected.')
+    fireEvent.change(screen.getByRole('combobox', { name: 'Age group' }), { target: { value: '0_4' } })
+    expect(useExplorer.getState().selection.metric).toBe('rate')
+    expect(screen.getByText('Cause breakdowns are available for All ages only.')).toBeVisible()
+  })
+  it('updates country, theme and overview selections while keeping fixture values coherent', async () => {
+    render(<App />)
+    await screen.findByRole('heading', { level: 1, name: 'Heart' })
+    fireEvent.click(screen.getByRole('button', { name: 'Country World' }))
+    const search = screen.getByRole('combobox', { name: 'Search countries' })
+    fireEvent.change(search, { target: { value: 'Japan' } }); fireEvent.keyDown(search, { key: 'Enter' })
+    await waitFor(() => expect(document.querySelector('.population-context')).toHaveTextContent('Japan'))
+    await waitFor(() => expect(document.querySelector('.big-stat')).toHaveTextContent(String(japan.values.deaths['2023'].both.all.ageStdRate[5])))
+    fireEvent.change(screen.getByRole('combobox', { name: 'Color theme' }), { target: { value: 'light' } })
+    expect(document.documentElement).toHaveAttribute('data-theme', 'light')
+    fireEvent.click(screen.getByRole('button', { name: 'Clear selection and show overview' }))
+    const chart = await screen.findByRole('region', { name: 'Ranked organ groups' })
+    fireEvent.click(within(chart).getByRole('button', { name: /^Brain:/ }))
+    expect(screen.getByRole('heading', { level: 1, name: 'Brain' })).toBeVisible()
+    expect(useExplorer.getState().selection.selectedOrgan).toBe('brain')
+  })
+  it('supports incoming navigation and includes the complete medical disclaimer and credits', async () => {
+    render(<App />)
+    await screen.findByRole('heading', { level: 1, name: 'Heart' })
+    await act(async () => {
+      window.history.replaceState(null, '', '#/about?location=WLD')
+      window.dispatchEvent(new HashChangeEvent('hashchange'))
+    })
+    expect(screen.getByRole('link', { name: 'About' })).toHaveAttribute('aria-current', 'page')
+    expect(screen.getByText('Educational visualization of population-level statistics. It does not provide diagnosis, treatment advice, or individual risk estimates. Anatomical associations are simplified; see Methodology.')).toBeVisible()
+    expect(screen.getByRole('link', { name: 'CC Attribution 4.0 International' })).toHaveAttribute('href', 'https://creativecommons.org/licenses/by/4.0/')
+  })
+})
