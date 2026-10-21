@@ -1,0 +1,22 @@
+# Dependencies / environments
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Raw and intermediate data (downloaded by script; redistribution not assumed)
+pipeline/data/raw/
+pipeline/data/interim/
+assets/source/
+assets/build/
+
+# Build output
+web/dist/
+*.log
+.DS_Store
+Thumbs.db
+.env
+.env.*

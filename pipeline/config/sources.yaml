@@ -1,0 +1,57 @@
+# Pinned source manifest for the Visceral pipeline.
+# Raw files are downloaded to pipeline/data/raw/ (git-ignored) and verified against sha256.
+# sha256 values are filled in by `visceral acquire --record-hashes` on first download.
+
+who_ghe_2023:
+  title: "Global Health Estimates 2023"
+  publisher: "World Health Organization"
+  release: "GHE 2023 (published 2026)"
+  terms_url: "https://www.who.int/about/policies/publishing/data-policy/terms-and-conditions"
+  citation_deaths: >-
+    Global Health Estimates 2023: Deaths by Cause, Age, Sex, by Country and by Region, 2000-2023.
+    Geneva, World Health Organization; 2026.
+  citation_dalys: >-
+    Global Health Estimates 2023: Disease burden by Cause, Age, Sex, by Country and by Region, 2000-2023.
+    Geneva, World Health Organization; 2026.
+  base_url: "https://cdn.who.int/media/docs/default-source/gho-documents/global-health-estimates/"
+  years: [2000, 2010, 2015, 2019, 2020, 2021, 2022, 2023]
+  files:
+    deaths:
+      2000: "deaths_bycountry_age_sex_2000_2026-10-01.xlsx?sfvrsn=8a1f2f66_2"
+      2010: "deaths_bycountry_age_sex_2010_2026-10-01.xlsx?sfvrsn=bdb22ae_2"
+      2015: "deaths_bycountry_age_sex_2015_2026-10-01.xlsx?sfvrsn=20ded4c8_2"
+      2019: "deaths_bycountry_age_sex_2019_2026-10-01.xlsx?sfvrsn=65519f95_2"
+      2020: "deaths_bycountry_age_sex_2020_2026-10-01.xlsx?sfvrsn=8ce9f6_2"
+      2021: "deaths_bycountry_age_sex_2021_2026-10-01.xlsx?sfvrsn=ec6820ee_2"
+      2022: "deaths_bycountry_age_sex_2022_2026-10-01.xlsx?sfvrsn=6560c3b0_2"
+      2023: "deaths_bycountry_age_sex_2023_2026-10-01e7663d9c-6384-479a-bb37-b58b127e7288.xlsx?sfvrsn=3ede9d95_2"
+    dalys:
+      2000: "daly_bycountry_age_sex_2000_2026-10-01.xlsx?sfvrsn=2162a5db_2"
+      2010: "daly_bycountry_age_sex_2010_2026-10-01.xlsx?sfvrsn=2c721682_2"
+      2015: "daly_bycountry_age_sex_2015_2026-10-01.xlsx?sfvrsn=2f65777a_2"
+      2019: "daly_bycountry_age_sex_2019_2026-10-01.xlsx?sfvrsn=2636cd0d_2"
+      2020: "daly_bycountry_age_sex_2020_2026-10-01.xlsx?sfvrsn=9a987dd4_2"
+      2021: "daly_bycountry_age_sex_2021_2026-10-01.xlsx?sfvrsn=a39d7c9_2"
+      2022: "daly_bycountry_age_sex_2022_2026-10-01.xlsx?sfvrsn=712fd24_4"
+      2023: "daly_bycountry_age_sex_2023_2026-10-01.xlsx?sfvrsn=ef0e85e4_2"
+    # Published WHO rates, used to validate our own rate calculations.
+    reference_age_standardized_death_rates: "age-standardized-death-rates-2000-2023_bycountry_2026-10-01.xlsx?sfvrsn=1330e53_1"
+    reference_crude_death_rates: "crude-death-rates-2000-2023_bycountry_2026-10-01.xlsx?sfvrsn=8ccbc771_1"
+    standard_population_pdf: "ghe2023_who_standard_population.pdf?sfvrsn=7aae2c85_1"
+  sha256: {}
+
+bodyparts3d_4_0:
+  title: "BodyParts3D 4.0"
+  publisher: "Database Center for Life Science (DBCLS)"
+  license: "CC BY 4.0"
+  license_url: "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/lic.html"
+  attribution: "BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International"
+  base_url: "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/LATEST/"
+  files:
+    - partof_BP3D_4.0_obj_99.zip
+    - partof_parts_list_e.txt
+    - partof_element_parts.txt
+    - partof_inclusion_relation_list.txt
+    - isa_parts_list_e.txt
+    - isa_element_parts.txt
+  local_dir: "assets/source/bodyparts3d"
