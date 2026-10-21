@@ -7,9 +7,7 @@ Explore how age structure, sex and analytical choices change the apparent distri
 [![CI](https://github.com/narowtow/visceral/actions/workflows/ci.yml/badge.svg)](https://github.com/narowtow/visceral/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-<!-- DEMO STATUS: replace the next line with the commented ready line after deployment. -->
-[**Live demo**](https://narowtow.github.io/visceral/) *(coming soon)* · [**Analysis write-up**](docs/analysis.md) · [**Notebooks**](pipeline/notebooks/)
-<!-- READY: [**Live demo**](https://narowtow.github.io/visceral/) · [**Analysis write-up**](docs/analysis.md) · [**Notebooks**](pipeline/notebooks/) -->
+[**Live demo**](https://narowtow.github.io/visceral/) · [**Analysis write-up**](docs/analysis.md) · [**Notebooks**](pipeline/notebooks/)
 
 ![Visceral explorer showing the 3D body colored by age-standardized death rates, filters, the organ list and the heart's details.](docs/screenshots/explorer.png)
 

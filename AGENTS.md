@@ -1,6 +1,6 @@
 # Visceral: agent guide
 
-Visceral is a portfolio data-science project. It is an interactive 3D human body whose organs are colored by global public-health burden (WHO Global Health Estimates 2023), filterable by country, sex, age group, year and measure.
+Visceral is a data-science project. It is an interactive 3D human body whose organs are colored by global public-health burden (WHO Global Health Estimates 2023), filterable by country, sex, age group, year and measure.
 
 ## Layout
 - `contracts/`: **the data contract** between pipeline and web. Read `contracts/README.md` and `contracts/organs.json` before touching data code. Never change the contract silently; if a change is required, say so in your final response.

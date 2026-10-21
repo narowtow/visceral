@@ -4,7 +4,7 @@ export default function AboutPage() {
   return <main id="main" className="static-page reading-page" tabIndex={-1}>
     <header className="page-intro"><span className="eyebrow">Visceral / About</span><h1>Public health,<br />made visible.</h1>
       <p className="page-lead">Where does the burden of disease fall—and how does that picture change across populations?</p>
-      <p>Visceral is a portfolio data-science project that connects population-level estimates with an interactive body. The body is a way into the data: explore a familiar structure, then examine the causes, trends and assumptions behind its color.</p>
+      <p>Visceral is a data-science project that connects population-level estimates with an interactive body. The body is a way into the data: explore a familiar structure, then examine the causes, trends and assumptions behind its color.</p>
     </header>
     <section><h2>Who built it</h2><p>Created by <a href="https://github.com/narowtow">narowtow</a>, with help from AI coding agents, Claude and Codex. The mapping, analysis and presentation are this project’s work and remain open to inspection and correction.</p>
       <a className="button-link" href={REPO_URL}>View the project on GitHub ↗</a></section>
