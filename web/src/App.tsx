@@ -7,6 +7,8 @@ import { syncUrl, useExplorer } from './state/store'
 import { routeFromHash, serializeHash } from './state/url'
 import Explorer from './Explorer'
 import DatasetBanner from './components/DatasetBanner'
+import Footer from './components/Footer'
+import { useRouteFocus } from './lib/useRouteFocus'
 const StaticPage = lazy(() => import('./pages/StaticPage'))
 const QuizPage = lazy(() => import('./pages/QuizPage'))
 const AnalysisPage = lazy(() => import('./pages/AnalysisPage'))
@@ -20,6 +22,7 @@ export default function App() {
   }, [resource.data])
   const manifest = checked.manifest
   const [route, setRoute] = useState(() => routeFromHash(window.location.hash))
+  useRouteFocus(route)
   const selection = useExplorer(s => s.selection)
   const themePreference = useExplorer(s => s.theme)
   const setTheme = useExplorer(s => s.setTheme)
@@ -43,5 +46,6 @@ export default function App() {
   return <><a className="skip-link" href="#main" onClick={e => { e.preventDefault(); document.getElementById('main')?.focus() }}>Skip to content</a><header className="app-header"><a className="wordmark" href={serializeHash(selection)} aria-label="Visceral Explore"><img className="brand-icon" src={`${import.meta.env.BASE_URL}brand/icon-32.png`} srcSet={`${import.meta.env.BASE_URL}brand/icon-64.png 2x`} width="32" height="32" alt="" />Visceral</a><nav aria-label="Main navigation">{routes.map(r => <a key={r} href={serializeHash(selection, r)} aria-current={route === r ? 'page' : undefined}>{r[0].toUpperCase() + r.slice(1)}</a>)}</nav><label className="theme-picker"><span className="sr-only">Color theme</span><select aria-label="Color theme" value={themePreference} onChange={e => setTheme(e.target.value as 'dark' | 'light' | 'system')}><option value="system">◐ System</option><option value="dark">☾ Dark</option><option value="light">☀ Light</option></select></label></header>
     {manifest && <DatasetBanner release={manifest.datasetRelease} />}
     {page}
+    <Footer />
   </>
 }

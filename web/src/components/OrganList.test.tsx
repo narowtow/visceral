@@ -15,7 +15,7 @@ describe('organ list', () => {
     fireEvent.keyDown(brain, { key: 'ArrowUp' }); expect(last).toHaveFocus()
     fireEvent.keyDown(last, { key: ' ' }); expect(selectOrgan).toHaveBeenLastCalledWith('other_unallocated')
     expect(brain).toHaveAttribute('aria-selected', 'true')
-    expect(brain).toHaveTextContent('0'); expect(eyes).toHaveTextContent('No data')
+    expect(brain).toHaveTextContent('<0.1'); expect(eyes).toHaveTextContent('No data')
   })
   it('filters groups and sorts values without treating missing as zero', () => {
     const selectOrgan = vi.fn()

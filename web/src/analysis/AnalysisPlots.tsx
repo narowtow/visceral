@@ -2,6 +2,7 @@ import { Bar, BarChart, CartesianGrid, Cell, ComposedChart, ErrorBar, Legend, Li
 import { interpolateViridis } from 'd3-scale-chromatic'
 import type { ReactElement } from 'react'
 import { useMedia } from '../lib/useMedia'
+import { logTicks } from '../lib/logTicks'
 import type { Figure, FigureRows } from './data'
 import type { ChartControls } from './presentation'
 import { columnNames, compact, explorerHash, focusGroups, globalLines, groupName, number, rangeRow, selectedRows, shortName, standardWinners } from './presentation'
@@ -44,8 +45,8 @@ function AgeScatter({ rows, controls, narrow, countries }: { rows: FigureRows['a
   const unit = controls.measure === 'deaths' ? 'deaths' : 'DALYs'
   return <>
     <Plot height={narrow ? 360 : 420}><ScatterChart margin={{ ...margin, left: 12, right: 32 }} accessibilityLayer={false}>
-      {grid}<XAxis dataKey="rate" type="number" scale="log" domain={domain} allowDataOverflow tick={tick} tickFormatter={compact} label={label(`Crude ${unit} / 100,000 (log)`)} />
-      <YAxis dataKey="ageStdRate" type="number" scale="log" domain={domain} allowDataOverflow width={66} tick={tick} tickFormatter={compact} label={{ value: `Standardized ${unit} / 100,000 (log)`, angle: -90, position: 'insideLeft', fill: 'var(--muted)', fontSize: 10 }} />
+      {grid}<XAxis dataKey="rate" type="number" scale="log" domain={domain} ticks={logTicks(domain)} allowDataOverflow tick={tick} tickFormatter={compact} label={label(`Crude ${unit} / 100,000 (log)`)} />
+      <YAxis dataKey="ageStdRate" type="number" scale="log" domain={domain} ticks={logTicks(domain)} allowDataOverflow width={66} tick={tick} tickFormatter={compact} label={{ value: `Standardized ${unit} / 100,000 (log)`, angle: -90, position: 'insideLeft', fill: 'var(--muted)', fontSize: 10 }} />
       <ReferenceLine segment={[{ x: domain[0], y: domain[0] }, { x: domain[1], y: domain[1] }]} stroke="var(--muted)" strokeDasharray="4 4" />
       <Tooltip content={<ChartTip countries={countries} />} />
       <Scatter data={points} name="Countries" isAnimationActive={false} onClick={point => { const row = point.payload as FigureRows['age-rankings']; window.location.hash = explorerHash(row.location, controls.organ, controls.measure) }} shape={props => {
@@ -67,7 +68,7 @@ function Ranges({ rows, unit, narrow, countries, log = false, parity = 0, domain
   const world = points.filter(row => row.world !== undefined && row.world !== null && (!log || row.world > 0)).map(row => ({ ...row, value: row.world }))
   return <>
     <Plot height={Math.max(220, points.length * 29 + 85)}><ScatterChart margin={{ ...margin, top: 12, left: 0 }} accessibilityLayer={false}>
-      {grid}<XAxis dataKey="value" type="number" scale={log ? 'log' : 'auto'} domain={domain ?? ['auto', 'auto']} tick={tick} tickFormatter={compact} label={label(unit)} />
+      {grid}<XAxis dataKey="value" type="number" scale={log ? 'log' : 'auto'} domain={domain ?? ['auto', 'auto']} ticks={log && domain ? logTicks(domain) : undefined} tick={tick} tickFormatter={compact} label={label(unit)} />
       <YAxis dataKey="label" type="category" allowDuplicatedCategory={false} width={narrow ? 121 : 155} interval={0} tick={{ ...tick, fontSize: narrow ? 10 : 11 }} />
       <ReferenceLine x={parity} stroke="var(--muted)" strokeDasharray="4 4" />
       <Tooltip content={<ChartTip countries={countries} />} />

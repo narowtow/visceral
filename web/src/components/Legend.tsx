@@ -2,7 +2,7 @@ import { organs } from '../data/contract'
 import type { Selection, Value } from '../data/contract'
 import { formatScaleTick } from '../lib/colorScale'
 import type { createColorScale } from '../lib/colorScale'
-import { formatValue } from '../lib/format'
+import { formatBurden, formatValue } from '../lib/format'
 import { useExplorer } from '../state/store'
 
 interface Props {
@@ -42,7 +42,7 @@ export default function Legend({ selection, context, population, loading, values
         onClick={() => selectOrgan(organ.id)}
       >
         <span className={`swatch ${values[organ.id] === null ? 'missing' : ''}`} style={{ backgroundColor: scale.color(values[organ.id]) }} aria-hidden="true" />
-        <span>{organ.label}</span><strong>{formatValue(values[organ.id], true)}</strong>
+        <span>{organ.label}</span><strong>{formatBurden(values[organ.id], true)}</strong>
       </button>)}</div>
     </div>
   </div>

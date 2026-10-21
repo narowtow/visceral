@@ -1,14 +1,15 @@
 import { Fragment, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState, useCallback } from 'react'
 import { Canvas, createPortal, useThree, useLoader } from '@react-three/fiber'
 import type { ThreeEvent } from '@react-three/fiber'
-import { CameraControls, CameraControlsImpl, Outlines } from '@react-three/drei'
+import { CameraControls, CameraControlsImpl } from '@react-three/drei/core/CameraControls'
+import { Outlines } from '@react-three/drei/core/Outlines'
 import { Box3, Mesh, MeshStandardMaterial, Object3D } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { MODEL_URL, configureModelLoader } from './modelLoader'
 import { organs } from '../data/contract'
 import type { Layer, Value } from '../data/contract'
 import { useExplorer } from '../state/store'
-import { formatValue } from '../lib/format'
+import { formatBurden } from '../lib/format'
 import { disposeMaterials, organBounds, prepareAnatomy, updateAnatomy, validateModelRoot } from './anatomy'
 import { cameraFrame, outlineColor } from './framing'
 import { PlaceholderBody } from './PlaceholderBody'
@@ -101,7 +102,7 @@ function Anatomy({ root: source, values, color, theme, onApi, onSelect, quiz }: 
     if (tooltip.current) {
       const stylized = hovered.current.some(mesh => mesh.userData.stylized) ? ' · Stylized anatomy' : ''
       // A quiz must not reveal the hovered organ's name before an answer.
-      tooltip.current.textContent = quiz ? 'Select this structure' : `${organs.find(o => o.id === id)?.label} · ${formatValue(values[id] ?? null)}${stylized}`
+      tooltip.current.textContent = quiz ? 'Select this structure' : `${organs.find(o => o.id === id)?.label} · ${formatBurden(values[id] ?? null)}${stylized}`
       tooltip.current.hidden = false
     }
     canvas.current.style.cursor = 'pointer'

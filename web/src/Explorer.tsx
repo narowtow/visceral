@@ -4,7 +4,7 @@ import type { Causes, LocationShard, Manifest } from './data/contract'
 import { useResource } from './data/useResource'
 import { populationFor, selectedValue } from './data/selectors'
 import { createColorScale, currentDomain } from './lib/colorScale'
-import { formatValue, units } from './lib/format'
+import { formatBurden, units } from './lib/format'
 import { useMedia } from './lib/useMedia'
 import { useExplorer } from './state/store'
 import BodyViewport from './components/BodyViewport'
@@ -41,6 +41,7 @@ export default function Explorer({ manifest, theme }: { manifest: Manifest; them
   const selected = organs.find(o => o.id === selection.selectedOrgan)
 
   return <main id="main" className="explore-page" tabIndex={-1}>
+    <h1 className="sr-only route-heading">Explore population-level burden</h1>
     <details className="filters-sheet" open={!narrow}>
       <summary>Filters <span>{location} · {selection.year}</span></summary>
       <Filters manifest={manifest} selection={selection} />
@@ -68,7 +69,7 @@ export default function Explorer({ manifest, theme }: { manifest: Manifest; them
       <OrganPanel manifest={manifest} shard={data} selection={selection} causes={causes.data} color={scale.color} />
     </div>
     <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">
-      {selected?.label ?? 'Overview'} selected. {context}. {selected ? `${formatValue(values[selected.id])}.` : ''}
+      {selected?.label ?? 'Overview'} selected. {context}. {selected ? `${formatBurden(values[selected.id])}.` : ''}
     </div>
   </main>
 }

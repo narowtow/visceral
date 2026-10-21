@@ -40,6 +40,13 @@ it.each([375, 700])('renders the ordered story and real charts at %i px, with ta
   expect(container.querySelectorAll('.figure-age-methods .recharts-errorBar').length).toBeGreaterThan(0)
   expect(fetcher.mock.calls.some(([url]) => String(url).endsWith('rank-correlations.json'))).toBe(false)
   const age = screen.getByRole('region', { name: 'Age structure changes country comparisons' })
+  // jsdom cannot measure tick text. Verify the actual SVG tick positions:
+  // both log axes must have the same round ticks, regardless of orientation.
+  const positions = (axis: string, coordinate: string) => [...age.querySelectorAll(`.recharts-${axis} .recharts-cartesian-axis-tick-line`)].map(line => Number(line.getAttribute(coordinate)))
+  const x = positions('xAxis', 'x1'), y = positions('yAxis', 'y1')
+  expect(x).toHaveLength(11) // 10, 20, 30, 50, 70, 100, …, 1,000
+  expect(y).toHaveLength(x.length)
+  for (let i = 0; i < x.length; i++) expect((x[i] - x[0]) / (x.at(-1)! - x[0])).toBeCloseTo((y[i] - y[0]) / (y.at(-1)! - y[0]), 6)
   fireEvent.click(within(age).getByRole('button', { name: 'Show table' }))
   const link = within(age).getByRole('link', { name: 'Explore Japan' })
   expect(link.getAttribute('href')).toContain('location=JPN')
@@ -53,6 +60,8 @@ it.each([375, 700])('renders the ordered story and real charts at %i px, with ta
   expect(window.location.hash).toContain('#/explore?')
   expect(window.location.hash).toContain('selectedOrgan=brain')
   const sex = screen.getByRole('region', { name: 'Male/female standardized burden ratios' })
+  const ratioTicks = sex.querySelectorAll('.recharts-xAxis .recharts-cartesian-axis-tick-line')
+  expect(ratioTicks.length).toBeGreaterThan(1)
   fireEvent.click(within(sex).getByRole('checkbox', { name: 'Show all eligible groups' }))
   await waitFor(() => expect(container.innerHTML).not.toMatch(/NaN|Infinity/))
   const details = container.querySelector('details')!

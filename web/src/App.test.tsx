@@ -16,6 +16,7 @@ vi.mock('recharts', () => ({
   CartesianGrid: () => null, Line: () => null, Tooltip: () => null, XAxis: () => null, YAxis: () => null,
 }))
 beforeEach(() => {
+  vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
   window.history.replaceState(null, '', '#/explore')
   useExplorer.setState({ selection: defaults, theme: 'system', isolate: false, rescale: false, layers: { skin: true, skeleton: false, organs: true } })
   vi.spyOn(globalThis, 'fetch').mockImplementation(async input => {
@@ -27,13 +28,57 @@ beforeEach(() => {
 afterEach(() => { window.history.replaceState(null, '', '/') })
 
 describe('explorer shell without WebGL', () => {
+  it('provides landmarks, route titles and one-time heading focus on every page', async () => {
+    render(<App />)
+    const explore = await screen.findByRole('heading', { level: 1, name: 'Explore population-level burden' })
+    await waitFor(() => expect(explore).toHaveFocus())
+    expect(screen.getByRole('banner')).toBeVisible()
+    expect(screen.getByRole('navigation', { name: 'Main navigation' })).toBeVisible()
+    const footer = screen.getByRole('contentinfo', { name: 'Project credits' })
+    expect(footer).toHaveTextContent('Data: WHO GHE 2023')
+    expect(within(footer).getByRole('link', { name: 'GitHub' })).toHaveAttribute('href', 'https://github.com/narowtow/visceral')
+    fireEvent.click(screen.getByRole('link', { name: 'Skip to content' }))
+    expect(screen.getByRole('main')).toHaveFocus()
+    const sex = screen.getByRole('combobox', { name: 'Sex' })
+    sex.focus(); fireEvent.change(sex, { target: { value: 'male' } })
+    expect(sex).toHaveFocus()
+    for (const route of ['about', 'methodology', 'quiz', 'analysis', 'explore']) {
+      await act(async () => {
+        window.history.replaceState(null, '', `#/${route}`)
+        window.dispatchEvent(new HashChangeEvent('hashchange'))
+      })
+      const heading = await screen.findByRole('heading', { level: 1 })
+      await waitFor(() => expect(heading).toHaveFocus())
+      expect(document.title).toBe(`${route[0].toUpperCase() + route.slice(1)} · Visceral`)
+      expect(screen.getAllByRole('main')).toHaveLength(1)
+      expect(screen.getAllByRole('contentinfo')).toHaveLength(1)
+      let level = 0
+      for (const h of screen.getAllByRole('heading')) {
+        const next = Number(h.tagName.slice(1))
+        expect(next - level, `${route}: ${h.textContent}`).toBeLessThanOrEqual(1)
+        level = next
+      }
+    }
+  })
+  it('offers DALYs for sensory groups and preserves the selected organ and population', async () => {
+    render(<App />)
+    const list = await screen.findByRole('listbox', { name: 'Organ groups' })
+    fireEvent.click(within(list).getByRole('option', { name: /Eyes/ }))
+    expect(screen.getByText('Burden for this group is mostly disability, not deaths. Try DALYs.')).toBeVisible()
+    const before = useExplorer.getState().selection
+    fireEvent.click(screen.getByRole('button', { name: 'Show DALYs' }))
+    expect(useExplorer.getState().selection).toEqual({ ...before, measure: 'dalys' })
+    expect(window.location.hash).toContain('measure=dalys')
+    expect(screen.getByRole('heading', { level: 2, name: 'Eyes' })).toHaveFocus()
+    expect(screen.queryByRole('button', { name: 'Show DALYs' })).not.toBeInTheDocument()
+  })
   it('labels fixtures, selects organs through the list, and exposes exact trend tables', async () => {
     render(<App />)
     expect(await screen.findByText('Synthetic data · not WHO estimates')).toBeVisible()
     const list = await screen.findByRole('listbox', { name: 'Organ groups' })
     const kidneys = within(list).getByRole('option', { name: /Kidneys/ })
     kidneys.focus(); fireEvent.keyDown(kidneys, { key: 'Enter' })
-    expect(screen.getByRole('heading', { level: 1, name: 'Kidneys' })).toBeVisible()
+    expect(screen.getByRole('heading', { level: 2, name: 'Kidneys' })).toBeVisible()
     expect(window.location.hash).toContain('selectedOrgan=kidneys')
     const trendSection = await screen.findByRole('region', { name: 'Trend' })
     fireEvent.click(within(trendSection).getByRole('button', { name: 'Show table' }))
@@ -47,7 +92,7 @@ describe('explorer shell without WebGL', () => {
   })
   it('updates country, theme and overview selections while keeping fixture values coherent', async () => {
     render(<App />)
-    await screen.findByRole('heading', { level: 1, name: 'Heart' })
+    await screen.findByRole('heading', { level: 2, name: 'Heart' })
     fireEvent.click(screen.getByRole('button', { name: 'Country World' }))
     const search = screen.getByRole('combobox', { name: 'Search countries' })
     fireEvent.change(search, { target: { value: 'Japan' } }); fireEvent.keyDown(search, { key: 'Enter' })
@@ -58,12 +103,12 @@ describe('explorer shell without WebGL', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Clear selection and show overview' }))
     const chart = await screen.findByRole('region', { name: 'Ranked organ groups' })
     fireEvent.click(within(chart).getByRole('button', { name: /^Brain:/ }))
-    expect(screen.getByRole('heading', { level: 1, name: 'Brain' })).toBeVisible()
+    expect(screen.getByRole('heading', { level: 2, name: 'Brain' })).toBeVisible()
     expect(useExplorer.getState().selection.selectedOrgan).toBe('brain')
   })
   it('supports incoming navigation and includes the complete medical disclaimer and credits', async () => {
     render(<App />)
-    await screen.findByRole('heading', { level: 1, name: 'Heart' })
+    await screen.findByRole('heading', { level: 2, name: 'Heart' })
     await act(async () => {
       window.history.replaceState(null, '', '#/about?location=WLD')
       window.dispatchEvent(new HashChangeEvent('hashchange'))

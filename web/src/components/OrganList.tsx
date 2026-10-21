@@ -1,7 +1,7 @@
 import { useId, useRef, useState } from 'react'
 import { organs } from '../data/contract'
 import type { Organ, Value } from '../data/contract'
-import { formatValue } from '../lib/format'
+import { formatBurden, formatValue } from '../lib/format'
 interface Props {
   selected: string | null; values: Record<string, Value>; color: (v: Value) => string
   selectOrgan: (id: string) => void; onSelected?: () => void
@@ -35,7 +35,7 @@ export default function OrganList({ selected, values, color, selectOrgan, onSele
         }}>
         <span className={`swatch ${showValues && values[organ.id] == null ? 'missing' : ''}`} style={{ backgroundColor: color(values[organ.id] ?? null) }} aria-hidden="true" />
         <span className="organ-option-name">{organ.label}{(!organ.modeled || organ.kind === 'systemic') && <small>{organ.kind === 'systemic' ? 'Systemic' : 'List only'}</small>}</span>
-        {showValues && <span className="list-value" title={formatValue(values[organ.id] ?? null)}>{formatValue(values[organ.id] ?? null, true)}</span>}
+        {showValues && <span className="list-value" title={`Source value: ${formatValue(values[organ.id] ?? null)}`}>{formatBurden(values[organ.id] ?? null, true)}</span>}
       </div>)}
     </div>
     {!filtered.length && <p className="muted">No matching organ groups.</p>}
