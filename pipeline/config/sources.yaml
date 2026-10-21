@@ -38,7 +38,26 @@ who_ghe_2023:
     reference_age_standardized_death_rates: "age-standardized-death-rates-2000-2023_bycountry_2026-10-01.xlsx?sfvrsn=1330e53_1"
     reference_crude_death_rates: "crude-death-rates-2000-2023_bycountry_2026-10-01.xlsx?sfvrsn=8ccbc771_1"
     standard_population_pdf: "ghe2023_who_standard_population.pdf?sfvrsn=7aae2c85_1"
-  sha256: {}
+  sha256:
+    "age-standardized-death-rates-2000-2023_bycountry_2026-10-01.xlsx": "f778bab9a60cb37604601441a94d5e6e4767898442e4f7dceac9125554179e3e"
+    "crude-death-rates-2000-2023_bycountry_2026-10-01.xlsx": "e4dd8613d34184b507e3b4f27befa4b360af88435f1cc19e5e524de4976a4be6"
+    "daly_bycountry_age_sex_2000_2026-10-01.xlsx": "f34a7f6c0c6f09f3b6ee31f1fcb5a84a259da474dadcfcd4f0aa8d682a9442cf"
+    "daly_bycountry_age_sex_2010_2026-10-01.xlsx": "42e5c8a62a16bb096c951e80d9d0bbc4ecf2772d0e9c5751466b94706f29d032"
+    "daly_bycountry_age_sex_2015_2026-10-01.xlsx": "381a6ce12942889e5ea3f25b72633c10d3d3b3d6f8a5e32afecfc1ca35749e73"
+    "daly_bycountry_age_sex_2019_2026-10-01.xlsx": "6d5c7d6a32e0c11c1ee9daf38cf73cbe46eec1051cd17b015fa3602538a3503f"
+    "daly_bycountry_age_sex_2020_2026-10-01.xlsx": "b1a955b2adc49e592ace244a8aeacf01de6e1936b8abf335dc5a6afd29fa7780"
+    "daly_bycountry_age_sex_2021_2026-10-01.xlsx": "bc9d77da627060a7e8f3766cd7c2c7354034779b3ab091af5422a568f2978dae"
+    "daly_bycountry_age_sex_2022_2026-10-01.xlsx": "5e511ee2298368bacbfbe06efea6c9e873d1a26ac2590060d5ddb4bc3cc42702"
+    "daly_bycountry_age_sex_2023_2026-10-01.xlsx": "6b8b44810f10a07b86954996ed036e1159e09baf588085b15756adda402658ac"
+    "deaths_bycountry_age_sex_2000_2026-10-01.xlsx": "06598b882d5714dda8e2dc744c7b47f1ff66e4ad9bd4faf7c36a511ab10ddb44"
+    "deaths_bycountry_age_sex_2010_2026-10-01.xlsx": "08548573f552bcf08e0f2fa239f1b20700e2c3b20a45fcd58ab4293ab3a59209"
+    "deaths_bycountry_age_sex_2015_2026-10-01.xlsx": "63b8c9eed08e2c923537f3016a60d2ac316e667c94fff981d1d36489542041d4"
+    "deaths_bycountry_age_sex_2019_2026-10-01.xlsx": "7d556dc61a45e9b3b1bc2837e3e61d0438e3294324549daab14fc5adb24c1255"
+    "deaths_bycountry_age_sex_2020_2026-10-01.xlsx": "cd61e1a7cbda69224ebee8c8b505e7d6830c7e74e9eaa7492f164f9ed6539fcd"
+    "deaths_bycountry_age_sex_2021_2026-10-01.xlsx": "b5c14dc7a4d67eb416012c6c854a961ac19a383daa33859eb9d3e0ee6b23268c"
+    "deaths_bycountry_age_sex_2022_2026-10-01.xlsx": "374106a740273b337cb92be049585958e8b13db27f3072735d8343678fa87d9e"
+    "deaths_bycountry_age_sex_2023_2026-10-01e7663d9c-6384-479a-bb37-b58b127e7288.xlsx": "560142e01435362de2abe196a4f46109c24d393df337731b2cc26009ad841753"
+    "ghe2023_who_standard_population.pdf": "bf065b2ce41d6eec6e59791b49f15ba4488f5b772655da16992b76d57559ee48"
 
 bodyparts3d_4_0:
   title: "BodyParts3D 4.0"

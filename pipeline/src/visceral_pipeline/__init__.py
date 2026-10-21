@@ -1,2 +1,7 @@
-def main() -> None:
-    print("Hello from visceral-pipeline!")
+"""WHO Global Health Estimates to organ-associated burden."""
+
+
+def main():
+    from .cli import main as cli_main
+
+    cli_main()
