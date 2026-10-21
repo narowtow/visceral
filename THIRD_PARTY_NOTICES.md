@@ -15,4 +15,5 @@ The MIT license in `LICENSE` covers this project's source code only.
 - BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International.
 - Source: https://dbarchive.biosciencedbc.jp/en/bodyparts3d/
 - License: https://dbarchive.biosciencedbc.jp/en/bodyparts3d/lic.html (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/)
-- **Modifications:** selected structures were merged into organ groups, renamed, decimated and compressed into `web/public/models/visceral.glb` by `assets/build_anatomy.py`.
+- **Modifications:** selected structures were merged into organ groups, renamed, decimated and compressed into `web/public/models/visceral.glb` by `assets/build_anatomy.py`. Lung surfaces are approximate envelopes derived from the BodyParts3D bronchial/vascular trees (convex hulls, voxel remeshing and smoothing); bronchi were regrouped with the trachea and pulmonary vessels omitted. BodyParts3D has no thyroid gland model, so the thyroid is a stylized shape created for this project.
+- The OBJ file headers still mention the earlier CC BY-SA 2.1 Japan license; the archive's license page (updated 2025-02-27) specifies CC BY 4.0, which this project follows.
