@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "findings": [
+    {
+      "id": "age-structure",
+      "headline": "Age adjustment substantially reorders heart and brain country comparisons",
+      "detail": "Across 185 countries, crude versus standardized death-rate ranking rho is 0.030 for brain and 0.252 for heart. Rankings describe mapped burden, not health-system performance.",
+      "numbers": {
+        "countries": 185,
+        "brainRho": 0.02963,
+        "heartRho": 0.2519
+      },
+      "figureIds": [
+        "age-rankings",
+        "rank-correlations",
+        "organ-rankings"
+      ]
+    },
+    {
+      "id": "pandemic",
+      "headline": "COVID-19 exceeds the net 2019–2021 increase in mapped lung deaths",
+      "detail": "Global broad-bin lung ASDR rose by 154.0 per 100,000. The COVID component rose by 168.8, while all other mapped lung causes together fell by 14.8. This is additive accounting, not a causal estimate.",
+      "numbers": {
+        "lungRateChange": 154,
+        "covidRateChange": 168.8,
+        "otherRateChange": -14.78,
+        "covidPercentOfNetChange": 109.6
+      },
+      "figureIds": [
+        "global-trends",
+        "country-trends",
+        "pandemic-decomposition"
+      ]
+    },
+    {
+      "id": "method",
+      "headline": "The median country difference in brain ASDR is −15% with broad age bins",
+      "detail": "For brain, the median difference is -15.02% (country p05–p95 -25.92% to 5.65%). Reassigning diabetes moves pancreas from global death-ASDR rank 16 to 7; burden totals are unchanged.",
+      "numbers": {
+        "brainMedianDifferencePercent": -15.02,
+        "brainP05": -25.92,
+        "brainP95": 5.649,
+        "ageConcentrationRho": -0.6868,
+        "pancreasRankBase": 16,
+        "pancreasRankAlternative": 7
+      },
+      "figureIds": [
+        "age-methods",
+        "standards-mapping",
+        "standard-rankings",
+        "standard-organ-rankings"
+      ]
+    },
+    {
+      "id": "patterns",
+      "headline": "Two reproducible patterns have modest separation and method-dependent membership",
+      "detail": "k=2 has silhouette 0.229 and median bootstrap ARI 0.936. Ward agreement is 0.396, so the split is a descriptive summary rather than a natural classification.",
+      "numbers": {
+        "k": 2,
+        "silhouette": 0.2289,
+        "bootstrapMedianARI": 0.9358,
+        "bootstrapP05ARI": 0.8738,
+        "wardARI": 0.396,
+        "compositionARI": 0.3966
+      },
+      "figureIds": [
+        "country-patterns",
+        "cluster-selection",
+        "cluster-centroids"
+      ]
+    },
+    {
+      "id": "sex",
+      "headline": "Sex contrasts depend on the group and burden measure",
+      "detail": "The global male/female mental/substance ASDR ratio is 3.56 for deaths and 1.03 for DALYs. For bones/joints DALYs it is 0.67. Sex-specific groups are excluded from these comparisons.",
+      "numbers": {
+        "injuryDeathsMaleFemale": 2.156,
+        "bonesJointsDalysMaleFemale": 0.6692,
+        "mentalSubstanceDeathsMaleFemale": 3.564,
+        "mentalSubstanceDalysMaleFemale": 1.03
+      },
+      "figureIds": [
+        "sex-ratios"
+      ]
+    }
+  ]
+}

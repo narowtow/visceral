@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "id": "rank-correlations",
+  "title": "Country ranking agreement by cause group",
+  "description": "Spearman rho of crude and standardized rankings across 185 countries, 2023; undefined constants are null.",
+  "data": [
+    {
+      "measure": "dalys",
+      "organ": "bones_joints",
+      "n": 185,
+      "rho": 0.8273,
+      "max_abs_rank_change": 100
+    },
+    {
+      "measure": "dalys",
+      "organ": "brain",
+      "n": 185,
+      "rho": 0.4786,
+      "max_abs_rank_change": 134
+    },
+    {
+      "measure": "dalys",
+      "organ": "eyes",
+      "n": 185,
+      "rho": 0.405,
+      "max_abs_rank_change": 119
+    },
+    {
+      "measure": "dalys",
+      "organ": "heart",
+      "n": 185,
+      "rho": 0.5453,
+      "max_abs_rank_change": 101
+    },
+    {
+      "measure": "dalys",
+      "organ": "lungs",
+      "n": 185,
+      "rho": 0.8749,
+      "max_abs_rank_change": 89
+    },
+    {
+      "measure": "dalys",
+      "organ": "mental_substance",
+      "n": 185,
+      "rho": 0.9239,
+      "max_abs_rank_change": 65
+    },
+    {
+      "measure": "dalys",
+      "organ": "muscles",
+      "n": 185,
+      "rho": null,
+      "max_abs_rank_change": 0
+    },
+    {
+      "measure": "dalys",
+      "organ": "thyroid",
+      "n": 185,
+      "rho": 0.692,
+      "max_abs_rank_change": 107
+    },
+    {
+      "measure": "deaths",
+      "organ": "bones_joints",
+      "n": 185,
+      "rho": 0.8179,
+      "max_abs_rank_change": 82
+    },
+    {
+      "measure": "deaths",
+      "organ": "brain",
+      "n": 185,
+      "rho": 0.02963,
+      "max_abs_rank_change": 156
+    },
+    {
+      "measure": "deaths",
+      "organ": "eyes",
+      "n": 185,
+      "rho": 0.9995,
+      "max_abs_rank_change": 7
+    },
+    {
+      "measure": "deaths",
+      "organ": "heart",
+      "n": 185,
+      "rho": 0.2519,
+      "max_abs_rank_change": 137
+    },
+    {
+      "measure": "deaths",
+      "organ": "lungs",
+      "n": 185,
+      "rho": 0.3816,
+      "max_abs_rank_change": 144
+    },
+    {
+      "measure": "deaths",
+      "organ": "mental_substance",
+      "n": 185,
+      "rho": 0.9249,
+      "max_abs_rank_change": 59
+    },
+    {
+      "measure": "deaths",
+      "organ": "muscles",
+      "n": 185,
+      "rho": null,
+      "max_abs_rank_change": 0
+    },
+    {
+      "measure": "deaths",
+      "organ": "thyroid",
+      "n": 185,
+      "rho": 0.5501,
+      "max_abs_rank_change": 133
+    }
+  ]
+}

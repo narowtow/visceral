@@ -1,0 +1,392 @@
+{
+  "schemaVersion": 1,
+  "id": "global-trends",
+  "title": "Eight observed global time points",
+  "description": "Both sexes, WLD: counts and rates per 100,000. WLD ASDRs use seven broad ages; no forecasting.",
+  "data": [
+    {
+      "measure": "dalys",
+      "year": 2015,
+      "organ": "brain",
+      "count": 280700000,
+      "rate": 3778,
+      "ageStdRate": 5142
+    },
+    {
+      "measure": "dalys",
+      "year": 2019,
+      "organ": "brain",
+      "count": 295500000,
+      "rate": 3802,
+      "ageStdRate": 4973
+    },
+    {
+      "measure": "dalys",
+      "year": 2020,
+      "organ": "brain",
+      "count": 290800000,
+      "rate": 3706,
+      "ageStdRate": 4831
+    },
+    {
+      "measure": "dalys",
+      "year": 2021,
+      "organ": "brain",
+      "count": 305900000,
+      "rate": 3864,
+      "ageStdRate": 4972
+    },
+    {
+      "measure": "dalys",
+      "year": 2010,
+      "organ": "brain",
+      "count": 266600000,
+      "rate": 3817,
+      "ageStdRate": 5380
+    },
+    {
+      "measure": "dalys",
+      "year": 2022,
+      "organ": "brain",
+      "count": 317200000,
+      "rate": 3974,
+      "ageStdRate": 5053
+    },
+    {
+      "measure": "dalys",
+      "year": 2023,
+      "organ": "brain",
+      "count": 316300000,
+      "rate": 3929,
+      "ageStdRate": 4934
+    },
+    {
+      "measure": "dalys",
+      "year": 2000,
+      "organ": "brain",
+      "count": 249900000,
+      "rate": 4073,
+      "ageStdRate": 6158
+    },
+    {
+      "measure": "dalys",
+      "year": 2015,
+      "organ": "lungs",
+      "count": 337500000,
+      "rate": 4542,
+      "ageStdRate": 5463
+    },
+    {
+      "measure": "dalys",
+      "year": 2019,
+      "organ": "lungs",
+      "count": 328500000,
+      "rate": 4227,
+      "ageStdRate": 5046
+    },
+    {
+      "measure": "dalys",
+      "year": 2020,
+      "organ": "lungs",
+      "count": 467100000,
+      "rate": 5952,
+      "ageStdRate": 7188
+    },
+    {
+      "measure": "dalys",
+      "year": 2021,
+      "organ": "lungs",
+      "count": 613600000,
+      "rate": 7753,
+      "ageStdRate": 9260
+    },
+    {
+      "measure": "dalys",
+      "year": 2010,
+      "organ": "lungs",
+      "count": 351200000,
+      "rate": 5028,
+      "ageStdRate": 6079
+    },
+    {
+      "measure": "dalys",
+      "year": 2022,
+      "organ": "lungs",
+      "count": 415800000,
+      "rate": 5210,
+      "ageStdRate": 6169
+    },
+    {
+      "measure": "dalys",
+      "year": 2023,
+      "organ": "lungs",
+      "count": 367400000,
+      "rate": 4563,
+      "ageStdRate": 5375
+    },
+    {
+      "measure": "dalys",
+      "year": 2000,
+      "organ": "lungs",
+      "count": 404100000,
+      "rate": 6585,
+      "ageStdRate": 7798
+    },
+    {
+      "measure": "dalys",
+      "year": 2015,
+      "organ": "heart",
+      "count": 238300000,
+      "rate": 3207,
+      "ageStdRate": 4686
+    },
+    {
+      "measure": "dalys",
+      "year": 2019,
+      "organ": "heart",
+      "count": 244900000,
+      "rate": 3151,
+      "ageStdRate": 4349
+    },
+    {
+      "measure": "dalys",
+      "year": 2020,
+      "organ": "heart",
+      "count": 239200000,
+      "rate": 3049,
+      "ageStdRate": 4191
+    },
+    {
+      "measure": "dalys",
+      "year": 2021,
+      "organ": "heart",
+      "count": 262200000,
+      "rate": 3313,
+      "ageStdRate": 4458
+    },
+    {
+      "measure": "dalys",
+      "year": 2010,
+      "organ": "heart",
+      "count": 218300000,
+      "rate": 3126,
+      "ageStdRate": 4839
+    },
+    {
+      "measure": "dalys",
+      "year": 2022,
+      "organ": "heart",
+      "count": 271600000,
+      "rate": 3403,
+      "ageStdRate": 4491
+    },
+    {
+      "measure": "dalys",
+      "year": 2023,
+      "organ": "heart",
+      "count": 274000000,
+      "rate": 3403,
+      "ageStdRate": 4424
+    },
+    {
+      "measure": "dalys",
+      "year": 2000,
+      "organ": "heart",
+      "count": 195800000,
+      "rate": 3191,
+      "ageStdRate": 5540
+    },
+    {
+      "measure": "deaths",
+      "year": 2015,
+      "organ": "brain",
+      "count": 8803000,
+      "rate": 118.5,
+      "ageStdRate": 203.2
+    },
+    {
+      "measure": "deaths",
+      "year": 2019,
+      "organ": "brain",
+      "count": 9463000,
+      "rate": 121.8,
+      "ageStdRate": 195.3
+    },
+    {
+      "measure": "deaths",
+      "year": 2020,
+      "organ": "brain",
+      "count": 9559000,
+      "rate": 121.8,
+      "ageStdRate": 193.7
+    },
+    {
+      "measure": "deaths",
+      "year": 2021,
+      "organ": "brain",
+      "count": 10050000,
+      "rate": 127,
+      "ageStdRate": 197.2
+    },
+    {
+      "measure": "deaths",
+      "year": 2010,
+      "organ": "brain",
+      "count": 8025000,
+      "rate": 114.9,
+      "ageStdRate": 207.1
+    },
+    {
+      "measure": "deaths",
+      "year": 2022,
+      "organ": "brain",
+      "count": 10570000,
+      "rate": 132.5,
+      "ageStdRate": 201.6
+    },
+    {
+      "measure": "deaths",
+      "year": 2023,
+      "organ": "brain",
+      "count": 10460000,
+      "rate": 129.9,
+      "ageStdRate": 193.1
+    },
+    {
+      "measure": "deaths",
+      "year": 2000,
+      "organ": "brain",
+      "count": 7194000,
+      "rate": 117.2,
+      "ageStdRate": 235.2
+    },
+    {
+      "measure": "deaths",
+      "year": 2015,
+      "organ": "lungs",
+      "count": 9292000,
+      "rate": 125,
+      "ageStdRate": 196.4
+    },
+    {
+      "measure": "deaths",
+      "year": 2019,
+      "organ": "lungs",
+      "count": 9549000,
+      "rate": 122.9,
+      "ageStdRate": 184
+    },
+    {
+      "measure": "deaths",
+      "year": 2020,
+      "organ": "lungs",
+      "count": 14330000,
+      "rate": 182.6,
+      "ageStdRate": 270
+    },
+    {
+      "measure": "deaths",
+      "year": 2021,
+      "organ": "lungs",
+      "count": 18650000,
+      "rate": 235.6,
+      "ageStdRate": 338
+    },
+    {
+      "measure": "deaths",
+      "year": 2010,
+      "organ": "lungs",
+      "count": 9026000,
+      "rate": 129.2,
+      "ageStdRate": 208.9
+    },
+    {
+      "measure": "deaths",
+      "year": 2022,
+      "organ": "lungs",
+      "count": 12440000,
+      "rate": 155.8,
+      "ageStdRate": 226.1
+    },
+    {
+      "measure": "deaths",
+      "year": 2023,
+      "organ": "lungs",
+      "count": 11110000,
+      "rate": 138,
+      "ageStdRate": 196.1
+    },
+    {
+      "measure": "deaths",
+      "year": 2000,
+      "organ": "lungs",
+      "count": 9068000,
+      "rate": 147.8,
+      "ageStdRate": 247.6
+    },
+    {
+      "measure": "deaths",
+      "year": 2015,
+      "organ": "heart",
+      "count": 10180000,
+      "rate": 136.9,
+      "ageStdRate": 233.4
+    },
+    {
+      "measure": "deaths",
+      "year": 2019,
+      "organ": "heart",
+      "count": 10550000,
+      "rate": 135.8,
+      "ageStdRate": 215.4
+    },
+    {
+      "measure": "deaths",
+      "year": 2020,
+      "organ": "heart",
+      "count": 10630000,
+      "rate": 135.5,
+      "ageStdRate": 213
+    },
+    {
+      "measure": "deaths",
+      "year": 2021,
+      "organ": "heart",
+      "count": 11470000,
+      "rate": 144.9,
+      "ageStdRate": 222.1
+    },
+    {
+      "measure": "deaths",
+      "year": 2010,
+      "organ": "heart",
+      "count": 9068000,
+      "rate": 129.8,
+      "ageStdRate": 234.7
+    },
+    {
+      "measure": "deaths",
+      "year": 2022,
+      "organ": "heart",
+      "count": 11850000,
+      "rate": 148.4,
+      "ageStdRate": 222.6
+    },
+    {
+      "measure": "deaths",
+      "year": 2023,
+      "organ": "heart",
+      "count": 11930000,
+      "rate": 148.2,
+      "ageStdRate": 217.1
+    },
+    {
+      "measure": "deaths",
+      "year": 2000,
+      "organ": "heart",
+      "count": 7912000,
+      "rate": 129,
+      "ageStdRate": 264.3
+    }
+  ]
+}

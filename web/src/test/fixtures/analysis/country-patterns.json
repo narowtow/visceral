@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "id": "country-patterns",
+  "title": "Two descriptive country patterns",
+  "description": "2023 deaths ASDR: PCA coordinates of standardized log1p rates; clustering used all 30 variable groups.",
+  "data": [
+    {
+      "location": "AFG",
+      "cluster": 1,
+      "pc1": 2.144,
+      "pc2": -3.153,
+      "hierarchical_cluster": 1,
+      "composition_cluster": 2,
+      "name": "Afghanistan"
+    },
+    {
+      "location": "IND",
+      "cluster": 1,
+      "pc1": 1.642,
+      "pc2": -2.534,
+      "hierarchical_cluster": 1,
+      "composition_cluster": 2,
+      "name": "India"
+    },
+    {
+      "location": "JPN",
+      "cluster": 2,
+      "pc1": -4.354,
+      "pc2": -0.764,
+      "hierarchical_cluster": 1,
+      "composition_cluster": 1,
+      "name": "Japan"
+    },
+    {
+      "location": "NGA",
+      "cluster": 1,
+      "pc1": 3.361,
+      "pc2": 1.279,
+      "hierarchical_cluster": 2,
+      "composition_cluster": 2,
+      "name": "Nigeria"
+    },
+    {
+      "location": "UKR",
+      "cluster": 2,
+      "pc1": -3.217,
+      "pc2": -1.617,
+      "hierarchical_cluster": 1,
+      "composition_cluster": 2,
+      "name": "Ukraine"
+    },
+    {
+      "location": "USA",
+      "cluster": 2,
+      "pc1": -2.892,
+      "pc2": 1.095,
+      "hierarchical_cluster": 1,
+      "composition_cluster": 1,
+      "name": "United States of America"
+    }
+  ]
+}

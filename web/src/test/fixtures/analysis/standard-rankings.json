@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "id": "standard-rankings",
+  "title": "Changing the standard population",
+  "description": "Country ranking agreement against WHO2026; all five standards use the same broad-bin method.",
+  "data": [
+    {
+      "measure": "dalys",
+      "standard": "European2013",
+      "organ": "brain",
+      "n": 185,
+      "rho": 0.9985,
+      "max_abs_rank_change": 13
+    },
+    {
+      "measure": "dalys",
+      "standard": "European2013",
+      "organ": "heart",
+      "n": 185,
+      "rho": 0.9996,
+      "max_abs_rank_change": 5
+    },
+    {
+      "measure": "dalys",
+      "standard": "European2013",
+      "organ": "muscles",
+      "n": 185,
+      "rho": null,
+      "max_abs_rank_change": 0
+    },
+    {
+      "measure": "dalys",
+      "standard": "Scandinavian",
+      "organ": "brain",
+      "n": 185,
+      "rho": 0.9979,
+      "max_abs_rank_change": 14
+    },
+    {
+      "measure": "dalys",
+      "standard": "Scandinavian",
+      "organ": "heart",
+      "n": 185,
+      "rho": 0.9979,
+      "max_abs_rank_change": 11
+    },
+    {
+      "measure": "dalys",
+      "standard": "Scandinavian",
+      "organ": "muscles",
+      "n": 185,
+      "rho": null,
+      "max_abs_rank_change": 0
+    },
+    {
+      "measure": "dalys",
+      "standard": "Segi",
+      "organ": "brain",
+      "n": 185,
+      "rho": 0.9907,
+      "max_abs_rank_change": 28
+    },
+    {
+      "measure": "dalys",
+      "standard": "Segi",
+      "organ": "heart",
+      "n": 185,
+      "rho": 0.9942,
+      "max_abs_rank_change": 22
+    },
+    {
+      "measure": "dalys",
+      "standard": "Segi",
+      "organ": "muscles",
+      "n": 185,
+      "rho": null,
+      "max_abs_rank_change": 0
+    },
+    {
+      "measure": "dalys",
+      "standard": "WHO2021",
+      "organ": "brain",
+      "n": 185,
+      "rho": 0.9946,
+      "max_abs_rank_change": 21
+    },
+    {
+      "measure": "dalys",
+      "standard": "WHO2021",
+      "organ": "heart",
+      "n": 185,
+      "rho": 0.9962,
+      "max_abs_rank_change": 15
+    },
+    {
+      "measure": "dalys",
+      "standard": "WHO2021",
+      "organ": "muscles",
+      "n": 185,
+      "rho": null,
+      "max_abs_rank_change": 0
+    },
+    {
+      "measure": "dalys",
+      "standard": "WHO2026",
+      "organ": "brain",
+      "n": 185,
+      "rho": 1,
+      "max_abs_rank_change": 0
+    },
+    {
+      "measure": "dalys",
+      "standard": "WHO2026",
+      "organ": "heart",
+      "n": 185,
+      "rho": 1,
+      "max_abs_rank_change": 0
+    },
+    {
+      "measure": "dalys",
+      "standard": "WHO2026",
+      "organ": "muscles",
+      "n": 185,
+      "rho": null,
+      "max_abs_rank_change": 0
+    },
+    {
+      "measure": "deaths",
+      "standard": "European2013",
+      "organ": "brain",
+      "n": 185,
+      "rho": 0.9998,
+      "max_abs_rank_change": 5
+    },
+    {
+      "measure": "deaths",
+      "standard": "European2013",
+      "organ": "heart",
+      "n": 185,
+      "rho": 0.9997,
+      "max_abs_rank_change": 7
+    },
+    {
+      "measure": "deaths",
+      "standard": "European2013",
+      "organ": "muscles",
+      "n": 185,
+      "rho": null,
+      "max_abs_rank_change": 0
+    },
+    {
+      "measure": "deaths",
+      "standard": "Scandinavian",
+      "organ": "brain",
+      "n": 185,
+      "rho": 0.9982,
+      "max_abs_rank_change": 14
+    },
+    {
+      "measure": "deaths",
+      "standard": "Scandinavian",
+      "organ": "heart",
+      "n": 185,
+      "rho": 0.9967,
+      "max_abs_rank_change": 16
+    },
+    {
+      "measure": "deaths",
+      "standard": "Scandinavian",
+      "organ": "muscles",
+      "n": 185,
+      "rho": null,
+      "max_abs_rank_change": 0
+    },
+    {
+      "measure": "deaths",
+      "standard": "Segi",
+      "organ": "brain",
+      "n": 185,
+      "rho": 0.9928,
+      "max_abs_rank_change": 24
+    },
+    {
+      "measure": "deaths",
+      "standard": "Segi",
+      "organ": "heart",
+      "n": 185,
+      "rho": 0.9926,
+      "max_abs_rank_change": 21
+    },
+    {
+      "measure": "deaths",
+      "standard": "Segi",
+      "organ": "muscles",
+      "n": 185,
+      "rho": null,
+      "max_abs_rank_change": 0
+    },
+    {
+      "measure": "deaths",
+      "standard": "WHO2021",
+      "organ": "brain",
+      "n": 185,
+      "rho": 0.997,
+      "max_abs_rank_change": 15
+    },
+    {
+      "measure": "deaths",
+      "standard": "WHO2021",
+      "organ": "heart",
+      "n": 185,
+      "rho": 0.9956,
+      "max_abs_rank_change": 18
+    },
+    {
+      "measure": "deaths",
+      "standard": "WHO2021",
+      "organ": "muscles",
+      "n": 185,
+      "rho": null,
+      "max_abs_rank_change": 0
+    },
+    {
+      "measure": "deaths",
+      "standard": "WHO2026",
+      "organ": "brain",
+      "n": 185,
+      "rho": 1,
+      "max_abs_rank_change": 0
+    },
+    {
+      "measure": "deaths",
+      "standard": "WHO2026",
+      "organ": "heart",
+      "n": 185,
+      "rho": 1,
+      "max_abs_rank_change": 0
+    },
+    {
+      "measure": "deaths",
+      "standard": "WHO2026",
+      "organ": "muscles",
+      "n": 185,
+      "rho": null,
+      "max_abs_rank_change": 0
+    }
+  ]
+}

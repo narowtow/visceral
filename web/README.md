@@ -23,7 +23,17 @@ This serves the checked-in WHO export from `public/data/` (185 countries plus Wo
 
 Static pages, quizzes, charts and anatomy are loaded in separate chunks. New layouts stack at narrow widths; wide cause tables and reproduction commands scroll inside their containers. Browser checks at 375 px remain necessary for actual layout verification.
 
-## Anatomy
+## Analysis story
+
+`#/analysis` loads `analysis/index.json` and `findings.json` through `DATA_BASE` and the shared abortable JSON cache. Findings retain their supplied order; figure entries retain index order within a finding. Nine main charts are visible, and the five additional comparisons load when their finding's details are expanded.
+
+`src/analysis/data.ts` validates all fourteen figure shapes, schema versions, finite/ranged values, nullable fields, referenced IDs, safe local filenames, percentile ordering and paired centroids. Errors identify the file, row and field. Real centroid reconstruction has a tiny negative floating-point residue near zero: only this derived field permits roundoff down to −1e-12 and the source value is preserved. Source JSON, pipeline and contracts are not modified.
+
+`AnalysisPage.tsx` contains the reading layout, narrative context and limits. `FigureCard.tsx` provides chart controls, units, summaries, source captions and HTML tables independently of the lazy `AnalysisPlots.tsx` chunk. The plots include log-axis age and sex comparisons, numeric irregular-year trends, additive lung decomposition, method ranges, standard-population winners, PCA patterns, k-selection evidence and centroid contrasts. Country points and table links create explicit 2023/Both sexes/All ages explorer URLs. Zero ratios and zero percentile endpoints stay in tables; the log plot clips zero endpoints at its positive display floor and says so.
+
+Tests use small copies of real rows under `src/test/fixtures/analysis/`, with no imports from generated public data. The page test renders actual Recharts SVG at fixed widths of 375 and 700 px, exercises controls/tables/navigation, and opens all fourteen charts. Actual browser typography and layout still need visual verification. Synthetic fixture mode has no analysis artifacts and displays a clear unavailable state; use `npm run dev` for the real story.
+
+## Anatomy model
 
 The lazy scene loads `${BASE_URL}models/visceral.glb` directly through R3F's cached `useLoader`, Three's GLTFLoader and MeshoptDecoder. `src/scene/modelLoader.ts` configures the same loader/decoder for the scene and Node tests. There is no separate HEAD availability check. Missing or unreadable models fall back to `src/scene/PlaceholderBody.ts`, log the original error, and show a non-blocking notice. Set `VITE_ANATOMY=placeholder` to intentionally use the schematic without attempting a model load. Both sources use the same Object3D mesh-name adapter in `src/scene/anatomy.ts`; organ definitions remain authoritative. List-only and systemic groups are still fully selectable.
 

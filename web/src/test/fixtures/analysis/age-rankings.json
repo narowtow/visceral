@@ -1,0 +1,272 @@
+{
+  "schemaVersion": 1,
+  "id": "age-rankings",
+  "title": "Age structure changes country comparisons",
+  "description": "2023, both sexes: heart and brain rates per 100,000; country deaths use WHO fine-age ASDRs.",
+  "data": [
+    {
+      "measure": "dalys",
+      "location": "JPN",
+      "organ": "brain",
+      "rate": 4300,
+      "ageStdRate": 2619,
+      "rank_a": 42,
+      "rank_b": 176,
+      "rank_change": -134,
+      "population_70_plus": 23.63
+    },
+    {
+      "measure": "dalys",
+      "location": "UKR",
+      "organ": "brain",
+      "rate": 5707,
+      "ageStdRate": 4773,
+      "rank_a": 14,
+      "rank_b": 86,
+      "rank_change": -72,
+      "population_70_plus": 12.34
+    },
+    {
+      "measure": "dalys",
+      "location": "JPN",
+      "organ": "heart",
+      "rate": 2679,
+      "ageStdRate": 1518,
+      "rank_a": 83,
+      "rank_b": 176,
+      "rank_change": -93,
+      "population_70_plus": 23.63
+    },
+    {
+      "measure": "dalys",
+      "location": "UKR",
+      "organ": "heart",
+      "rate": 14200,
+      "ageStdRate": 11570,
+      "rank_a": 1,
+      "rank_b": 6,
+      "rank_change": -5,
+      "population_70_plus": 12.34
+    },
+    {
+      "measure": "deaths",
+      "location": "AFG",
+      "organ": "brain",
+      "rate": 98.75,
+      "ageStdRate": 590.1,
+      "rank_a": 93,
+      "rank_b": 2,
+      "rank_change": 91,
+      "population_70_plus": 1.354
+    },
+    {
+      "measure": "deaths",
+      "location": "IND",
+      "organ": "brain",
+      "rate": 98.37,
+      "ageStdRate": 243.2,
+      "rank_a": 94,
+      "rank_b": 83,
+      "rank_change": 11,
+      "population_70_plus": 4.095
+    },
+    {
+      "measure": "deaths",
+      "location": "AFG",
+      "organ": "heart",
+      "rate": 102.1,
+      "ageStdRate": 612.1,
+      "rank_a": 106,
+      "rank_b": 7,
+      "rank_change": 99,
+      "population_70_plus": 1.354
+    },
+    {
+      "measure": "deaths",
+      "location": "IND",
+      "organ": "heart",
+      "rate": 153.2,
+      "ageStdRate": 338.9,
+      "rank_a": 59,
+      "rank_b": 47,
+      "rank_change": 12,
+      "population_70_plus": 4.095
+    },
+    {
+      "measure": "deaths",
+      "location": "NGA",
+      "organ": "brain",
+      "rate": 96.37,
+      "ageStdRate": 348.5,
+      "rank_a": 96,
+      "rank_b": 45,
+      "rank_change": 51,
+      "population_70_plus": 1.716
+    },
+    {
+      "measure": "deaths",
+      "location": "NGA",
+      "organ": "heart",
+      "rate": 57.95,
+      "ageStdRate": 339.3,
+      "rank_a": 152,
+      "rank_b": 46,
+      "rank_change": 106,
+      "population_70_plus": 1.716
+    },
+    {
+      "measure": "dalys",
+      "location": "AFG",
+      "organ": "brain",
+      "rate": 4223,
+      "ageStdRate": 11130,
+      "rank_a": 48,
+      "rank_b": 4,
+      "rank_change": 44,
+      "population_70_plus": 1.354
+    },
+    {
+      "measure": "dalys",
+      "location": "IND",
+      "organ": "brain",
+      "rate": 3329,
+      "ageStdRate": 4961,
+      "rank_a": 103,
+      "rank_b": 83,
+      "rank_change": 20,
+      "population_70_plus": 4.095
+    },
+    {
+      "measure": "dalys",
+      "location": "AFG",
+      "organ": "heart",
+      "rate": 3173,
+      "ageStdRate": 11140,
+      "rank_a": 64,
+      "rank_b": 8,
+      "rank_change": 56,
+      "population_70_plus": 1.354
+    },
+    {
+      "measure": "dalys",
+      "location": "IND",
+      "organ": "heart",
+      "rate": 4243,
+      "ageStdRate": 6398,
+      "rank_a": 43,
+      "rank_b": 40,
+      "rank_change": 3,
+      "population_70_plus": 4.095
+    },
+    {
+      "measure": "deaths",
+      "location": "USA",
+      "organ": "brain",
+      "rate": 169,
+      "ageStdRate": 162.2,
+      "rank_a": 36,
+      "rank_b": 128,
+      "rank_change": -92,
+      "population_70_plus": 11.8
+    },
+    {
+      "measure": "deaths",
+      "location": "USA",
+      "organ": "heart",
+      "rate": 177.5,
+      "ageStdRate": 165.3,
+      "rank_a": 47,
+      "rank_b": 147,
+      "rank_change": -100,
+      "population_70_plus": 11.8
+    },
+    {
+      "measure": "deaths",
+      "location": "JPN",
+      "organ": "brain",
+      "rate": 203.5,
+      "ageStdRate": 88.15,
+      "rank_a": 21,
+      "rank_b": 177,
+      "rank_change": -156,
+      "population_70_plus": 23.63
+    },
+    {
+      "measure": "deaths",
+      "location": "UKR",
+      "organ": "brain",
+      "rate": 242.4,
+      "ageStdRate": 203.5,
+      "rank_a": 11,
+      "rank_b": 100,
+      "rank_change": -89,
+      "population_70_plus": 12.34
+    },
+    {
+      "measure": "deaths",
+      "location": "JPN",
+      "organ": "heart",
+      "rate": 189.9,
+      "ageStdRate": 81.99,
+      "rank_a": 43,
+      "rank_b": 180,
+      "rank_change": -137,
+      "population_70_plus": 23.63
+    },
+    {
+      "measure": "deaths",
+      "location": "UKR",
+      "organ": "heart",
+      "rate": 750,
+      "ageStdRate": 627.1,
+      "rank_a": 1,
+      "rank_b": 6,
+      "rank_change": -5,
+      "population_70_plus": 12.34
+    },
+    {
+      "measure": "dalys",
+      "location": "USA",
+      "organ": "brain",
+      "rate": 4011,
+      "ageStdRate": 3668,
+      "rank_a": 64,
+      "rank_b": 123,
+      "rank_change": -59,
+      "population_70_plus": 11.8
+    },
+    {
+      "measure": "dalys",
+      "location": "USA",
+      "organ": "heart",
+      "rate": 3533,
+      "ageStdRate": 3128,
+      "rank_a": 55,
+      "rank_b": 143,
+      "rank_change": -88,
+      "population_70_plus": 11.8
+    },
+    {
+      "measure": "dalys",
+      "location": "NGA",
+      "organ": "brain",
+      "rate": 5666,
+      "ageStdRate": 8077,
+      "rank_a": 15,
+      "rank_b": 19,
+      "rank_change": -4,
+      "population_70_plus": 1.716
+    },
+    {
+      "measure": "dalys",
+      "location": "NGA",
+      "organ": "heart",
+      "rate": 1588,
+      "ageStdRate": 5363,
+      "rank_a": 151,
+      "rank_b": 62,
+      "rank_change": 89,
+      "population_70_plus": 1.716
+    }
+  ]
+}

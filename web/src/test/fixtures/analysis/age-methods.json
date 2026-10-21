@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "id": "age-methods",
+  "title": "Broad-bin versus published fine-age deaths ASDR",
+  "description": "2023 both sexes; country quantiles of 100*(broad-published)/published, paired with global 70+ death share (%).",
+  "data": [
+    {
+      "organ": "bones_joints",
+      "n": 185,
+      "p05": -24.55,
+      "median": -10.99,
+      "p95": 5.385,
+      "world_70_plus_share": 65.44,
+      "within_organ_age_rho": 0.4091
+    },
+    {
+      "organ": "brain",
+      "n": 185,
+      "p05": -25.92,
+      "median": -15.02,
+      "p95": 5.649,
+      "world_70_plus_share": 67.96,
+      "within_organ_age_rho": 0.6733
+    },
+    {
+      "organ": "eyes",
+      "n": 20,
+      "p05": -36.03,
+      "median": -3.411,
+      "p95": 15.12,
+      "world_70_plus_share": 90.48,
+      "within_organ_age_rho": -0.21
+    },
+    {
+      "organ": "heart",
+      "n": 185,
+      "p05": -24.92,
+      "median": -13.67,
+      "p95": 6.368,
+      "world_70_plus_share": 63.38,
+      "within_organ_age_rho": 0.6514
+    },
+    {
+      "organ": "lungs",
+      "n": 185,
+      "p05": -23.18,
+      "median": -12.64,
+      "p95": 4.59,
+      "world_70_plus_share": 58.87,
+      "within_organ_age_rho": 0.596
+    },
+    {
+      "organ": "mental_substance",
+      "n": 185,
+      "p05": -7.475,
+      "median": -0.9347,
+      "p95": 2.104,
+      "world_70_plus_share": 9.744,
+      "within_organ_age_rho": 0.1597
+    },
+    {
+      "organ": "muscles",
+      "n": 0,
+      "p05": null,
+      "median": null,
+      "p95": null,
+      "world_70_plus_share": null,
+      "within_organ_age_rho": null
+    },
+    {
+      "organ": "thyroid",
+      "n": 182,
+      "p05": -13.9,
+      "median": -1.929,
+      "p95": 10.6,
+      "world_70_plus_share": 47.66,
+      "within_organ_age_rho": 0.06656
+    }
+  ]
+}

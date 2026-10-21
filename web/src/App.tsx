@@ -9,6 +9,7 @@ import Explorer from './Explorer'
 import DatasetBanner from './components/DatasetBanner'
 const StaticPage = lazy(() => import('./pages/StaticPage'))
 const QuizPage = lazy(() => import('./pages/QuizPage'))
+const AnalysisPage = lazy(() => import('./pages/AnalysisPage'))
 const routes = ['explore', 'analysis', 'methodology', 'about', 'quiz']
 
 export default function App() {
@@ -34,8 +35,13 @@ export default function App() {
   useEffect(() => { document.title = `${route[0].toUpperCase() + route.slice(1)} · Visceral` }, [route])
   const error = resource.error ?? checked.error
   const loading = <main id="main" className="load-page" tabIndex={-1}><p role="status">Loading {route}…</p></main>
+  let page = loading
+  if (route === 'analysis') page = <Suspense fallback={loading}><AnalysisPage manifest={manifest} /></Suspense>
+  else if (route === 'methodology' || route === 'about') page = <Suspense fallback={loading}><StaticPage route={route} /></Suspense>
+  else if (error) page = <main id="main" className="load-page" tabIndex={-1}><h1>Data unavailable</h1><p role="alert">{error}</p><button onClick={resource.retry}>Try again</button></main>
+  else if (manifest) page = route === 'quiz' ? <Suspense fallback={loading}><QuizPage manifest={manifest} theme={theme} /></Suspense> : <Explorer manifest={manifest} theme={theme} />
   return <><a className="skip-link" href="#main" onClick={e => { e.preventDefault(); document.getElementById('main')?.focus() }}>Skip to content</a><header className="app-header"><a className="wordmark" href={serializeHash(selection)} aria-label="Visceral Explore"><img className="brand-icon" src={`${import.meta.env.BASE_URL}brand/icon-32.png`} srcSet={`${import.meta.env.BASE_URL}brand/icon-64.png 2x`} width="32" height="32" alt="" />Visceral</a><nav aria-label="Main navigation">{routes.map(r => <a key={r} href={serializeHash(selection, r)} aria-current={route === r ? 'page' : undefined}>{r[0].toUpperCase() + r.slice(1)}</a>)}</nav><label className="theme-picker"><span className="sr-only">Color theme</span><select aria-label="Color theme" value={themePreference} onChange={e => setTheme(e.target.value as 'dark' | 'light' | 'system')}><option value="system">◐ System</option><option value="dark">☾ Dark</option><option value="light">☀ Light</option></select></label></header>
     {manifest && <DatasetBanner release={manifest.datasetRelease} />}
-    {route !== 'explore' && route !== 'quiz' ? <Suspense fallback={loading}><StaticPage route={route} /></Suspense> : error ? <main id="main" className="load-page" tabIndex={-1}><h1>Data unavailable</h1><p role="alert">{error}</p><button onClick={resource.retry}>Try again</button></main> : manifest ? route === 'quiz' ? <Suspense fallback={loading}><QuizPage manifest={manifest} theme={theme} /></Suspense> : <Explorer manifest={manifest} theme={theme} /> : loading}
+    {page}
   </>
 }

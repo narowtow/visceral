@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "id": "standard-organ-rankings",
+  "title": "Global organ rankings under five standards",
+  "description": "2023 both sexes, WLD; standardized rates per 100,000 and within-measure organ rank (30 groups).",
+  "data": [
+    {
+      "measure": "dalys",
+      "standard": "WHO2026",
+      "organ": "brain",
+      "ageStdRate": 4934,
+      "rank": 2
+    },
+    {
+      "measure": "dalys",
+      "standard": "WHO2026",
+      "organ": "lungs",
+      "ageStdRate": 5375,
+      "rank": 1
+    },
+    {
+      "measure": "deaths",
+      "standard": "WHO2026",
+      "organ": "heart",
+      "ageStdRate": 217.1,
+      "rank": 1
+    },
+    {
+      "measure": "deaths",
+      "standard": "WHO2026",
+      "organ": "lungs",
+      "ageStdRate": 196.1,
+      "rank": 2
+    },
+    {
+      "measure": "dalys",
+      "standard": "WHO2021",
+      "organ": "injuries",
+      "ageStdRate": 3899,
+      "rank": 2
+    },
+    {
+      "measure": "dalys",
+      "standard": "WHO2021",
+      "organ": "lungs",
+      "ageStdRate": 4334,
+      "rank": 1
+    },
+    {
+      "measure": "deaths",
+      "standard": "WHO2021",
+      "organ": "heart",
+      "ageStdRate": 127,
+      "rank": 1
+    },
+    {
+      "measure": "deaths",
+      "standard": "WHO2021",
+      "organ": "lungs",
+      "ageStdRate": 121,
+      "rank": 2
+    },
+    {
+      "measure": "dalys",
+      "standard": "Segi",
+      "organ": "injuries",
+      "ageStdRate": 3794,
+      "rank": 2
+    },
+    {
+      "measure": "dalys",
+      "standard": "Segi",
+      "organ": "lungs",
+      "ageStdRate": 4436,
+      "rank": 1
+    },
+    {
+      "measure": "deaths",
+      "standard": "Segi",
+      "organ": "heart",
+      "ageStdRate": 106.9,
+      "rank": 2
+    },
+    {
+      "measure": "deaths",
+      "standard": "Segi",
+      "organ": "lungs",
+      "ageStdRate": 108.4,
+      "rank": 1
+    },
+    {
+      "measure": "dalys",
+      "standard": "Scandinavian",
+      "organ": "brain",
+      "ageStdRate": 4243,
+      "rank": 2
+    },
+    {
+      "measure": "dalys",
+      "standard": "Scandinavian",
+      "organ": "lungs",
+      "ageStdRate": 4849,
+      "rank": 1
+    },
+    {
+      "measure": "deaths",
+      "standard": "Scandinavian",
+      "organ": "heart",
+      "ageStdRate": 164.7,
+      "rank": 1
+    },
+    {
+      "measure": "deaths",
+      "standard": "Scandinavian",
+      "organ": "lungs",
+      "ageStdRate": 151.3,
+      "rank": 2
+    },
+    {
+      "measure": "dalys",
+      "standard": "European2013",
+      "organ": "brain",
+      "ageStdRate": 5836,
+      "rank": 2
+    },
+    {
+      "measure": "dalys",
+      "standard": "European2013",
+      "organ": "lungs",
+      "ageStdRate": 5975,
+      "rank": 1
+    },
+    {
+      "measure": "deaths",
+      "standard": "European2013",
+      "organ": "brain",
+      "ageStdRate": 245.1,
+      "rank": 2
+    },
+    {
+      "measure": "deaths",
+      "standard": "European2013",
+      "organ": "heart",
+      "ageStdRate": 276.1,
+      "rank": 1
+    }
+  ]
+}

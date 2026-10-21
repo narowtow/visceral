@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "id": "cluster-centroids",
+  "title": "Profiles of the descriptive patterns",
+  "description": "z is the centroid in standardized log1p rate space; median_rate is the observed member median per 100,000.",
+  "data": [
+    {
+      "cluster": 1,
+      "organ": "bladder",
+      "z": -0.6129,
+      "log_space_rate": 2.357,
+      "median_rate": 2.361,
+      "n": 83
+    },
+    {
+      "cluster": 1,
+      "organ": "colon_rectum",
+      "z": -0.6885,
+      "log_space_rate": 9.801,
+      "median_rate": 9.137,
+      "n": 83
+    },
+    {
+      "cluster": 1,
+      "organ": "lungs",
+      "z": 0.851,
+      "log_space_rate": 319.7,
+      "median_rate": 349.8,
+      "n": 83
+    },
+    {
+      "cluster": 1,
+      "organ": "maternal_neonatal",
+      "z": 0.8898,
+      "log_space_rate": 26.66,
+      "median_rate": 30.31,
+      "n": 83
+    },
+    {
+      "cluster": 1,
+      "organ": "pancreas",
+      "z": -0.6146,
+      "log_space_rate": 6.653,
+      "median_rate": 6.532,
+      "n": 83
+    },
+    {
+      "cluster": 1,
+      "organ": "small_intestine",
+      "z": 0.9135,
+      "log_space_rate": 36.3,
+      "median_rate": 49.5,
+      "n": 83
+    },
+    {
+      "cluster": 2,
+      "organ": "bladder",
+      "z": 0.4988,
+      "log_space_rate": 4.994,
+      "median_rate": 5.294,
+      "n": 102
+    },
+    {
+      "cluster": 2,
+      "organ": "colon_rectum",
+      "z": 0.5603,
+      "log_space_rate": 19.47,
+      "median_rate": 20.74,
+      "n": 102
+    },
+    {
+      "cluster": 2,
+      "organ": "lungs",
+      "z": -0.6925,
+      "log_space_rate": 128.4,
+      "median_rate": 123.3,
+      "n": 102
+    },
+    {
+      "cluster": 2,
+      "organ": "maternal_neonatal",
+      "z": -0.7241,
+      "log_space_rate": 4.731,
+      "median_rate": 4.427,
+      "n": 102
+    },
+    {
+      "cluster": 2,
+      "organ": "pancreas",
+      "z": 0.5001,
+      "log_space_rate": 11.66,
+      "median_rate": 12.61,
+      "n": 102
+    },
+    {
+      "cluster": 2,
+      "organ": "small_intestine",
+      "z": -0.7434,
+      "log_space_rate": 1.955,
+      "median_rate": 1.922,
+      "n": 102
+    },
+    {
+      "cluster": 1,
+      "organ": "eyes",
+      "z": -0.1957,
+      "log_space_rate": -8.674e-19,
+      "median_rate": 0,
+      "n": 83
+    },
+    {
+      "cluster": 2,
+      "organ": "eyes",
+      "z": 0.1593,
+      "log_space_rate": 0.00283,
+      "median_rate": 0,
+      "n": 102
+    }
+  ]
+}

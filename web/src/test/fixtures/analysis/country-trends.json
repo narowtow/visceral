@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "id": "country-trends",
+  "title": "Country ASDR changes from 2000 to 2019",
+  "description": "Country p05, median and p95 percent changes by group; descriptive distribution, not confidence intervals.",
+  "data": [
+    {
+      "measure": "dalys",
+      "organ": "bones_joints",
+      "p05": -1.163,
+      "median": 3.464,
+      "p95": 7.679
+    },
+    {
+      "measure": "dalys",
+      "organ": "brain",
+      "p05": -43.66,
+      "median": -17.18,
+      "p95": 10.54
+    },
+    {
+      "measure": "dalys",
+      "organ": "eyes",
+      "p05": -22.48,
+      "median": -10.31,
+      "p95": -1.519
+    },
+    {
+      "measure": "dalys",
+      "organ": "heart",
+      "p05": -55.04,
+      "median": -20.35,
+      "p95": 22.98
+    },
+    {
+      "measure": "dalys",
+      "organ": "lungs",
+      "p05": -55.88,
+      "median": -26.54,
+      "p95": 1.29
+    },
+    {
+      "measure": "dalys",
+      "organ": "mental_substance",
+      "p05": -10.05,
+      "median": 4.243,
+      "p95": 16
+    },
+    {
+      "measure": "dalys",
+      "organ": "muscles",
+      "p05": null,
+      "median": null,
+      "p95": null
+    },
+    {
+      "measure": "dalys",
+      "organ": "thyroid",
+      "p05": -45.2,
+      "median": 3.306,
+      "p95": 61.18
+    },
+    {
+      "measure": "deaths",
+      "organ": "bones_joints",
+      "p05": -40.76,
+      "median": 2.244,
+      "p95": 110
+    },
+    {
+      "measure": "deaths",
+      "organ": "brain",
+      "p05": -52.98,
+      "median": -18.01,
+      "p95": 20.84
+    },
+    {
+      "measure": "deaths",
+      "organ": "eyes",
+      "p05": -100,
+      "median": -67.9,
+      "p95": 87.5
+    },
+    {
+      "measure": "deaths",
+      "organ": "heart",
+      "p05": -55.85,
+      "median": -20.06,
+      "p95": 28.68
+    },
+    {
+      "measure": "deaths",
+      "organ": "lungs",
+      "p05": -51.07,
+      "median": -22.39,
+      "p95": 9.592
+    },
+    {
+      "measure": "deaths",
+      "organ": "mental_substance",
+      "p05": -56.52,
+      "median": 1.172,
+      "p95": 141.3
+    },
+    {
+      "measure": "deaths",
+      "organ": "muscles",
+      "p05": null,
+      "median": null,
+      "p95": null
+    },
+    {
+      "measure": "deaths",
+      "organ": "thyroid",
+      "p05": -45.4,
+      "median": 3.389,
+      "p95": 55.94
+    }
+  ]
+}

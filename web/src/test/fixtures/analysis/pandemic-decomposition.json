@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "id": "pandemic-decomposition",
+  "title": "COVID-19 and the mapped lung increase",
+  "description": "Observed 2020/2021 minus 2019: additive cause accounting, not a causal counterfactual. Shares may exceed 100%.",
+  "data": [
+    {
+      "measure": "deaths",
+      "year": 2020,
+      "metric": "count",
+      "baseline": 9549000,
+      "observed": 14330000,
+      "change": 4782000,
+      "cause_change": 5293000,
+      "other_change": -511200,
+      "cause_share_of_net_change_percent": 110.7
+    },
+    {
+      "measure": "deaths",
+      "year": 2020,
+      "metric": "ageStdRate",
+      "baseline": 184,
+      "observed": 270,
+      "change": 85.98,
+      "cause_change": 99.87,
+      "other_change": -13.89,
+      "cause_share_of_net_change_percent": 116.2
+    },
+    {
+      "measure": "deaths",
+      "year": 2021,
+      "metric": "count",
+      "baseline": 9549000,
+      "observed": 18650000,
+      "change": 9102000,
+      "cause_change": 9438000,
+      "other_change": -336200,
+      "cause_share_of_net_change_percent": 103.7
+    },
+    {
+      "measure": "deaths",
+      "year": 2021,
+      "metric": "ageStdRate",
+      "baseline": 184,
+      "observed": 338,
+      "change": 154,
+      "cause_change": 168.8,
+      "other_change": -14.78,
+      "cause_share_of_net_change_percent": 109.6
+    },
+    {
+      "measure": "dalys",
+      "year": 2020,
+      "metric": "count",
+      "baseline": 328500000,
+      "observed": 467100000,
+      "change": 138500000,
+      "cause_change": 155800000,
+      "other_change": -17250000,
+      "cause_share_of_net_change_percent": 112.5
+    },
+    {
+      "measure": "dalys",
+      "year": 2020,
+      "metric": "ageStdRate",
+      "baseline": 5046,
+      "observed": 7188,
+      "change": 2143,
+      "cause_change": 2483,
+      "other_change": -340,
+      "cause_share_of_net_change_percent": 115.9
+    },
+    {
+      "measure": "dalys",
+      "year": 2021,
+      "metric": "count",
+      "baseline": 328500000,
+      "observed": 613600000,
+      "change": 285100000,
+      "cause_change": 296800000,
+      "other_change": -11710000,
+      "cause_share_of_net_change_percent": 104.1
+    },
+    {
+      "measure": "dalys",
+      "year": 2021,
+      "metric": "ageStdRate",
+      "baseline": 5046,
+      "observed": 9260,
+      "change": 4214,
+      "cause_change": 4532,
+      "other_change": -318.8,
+      "cause_share_of_net_change_percent": 107.6
+    }
+  ]
+}

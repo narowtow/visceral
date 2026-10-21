@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "id": "organ-rankings",
+  "title": "Organ ranking agreement within countries",
+  "description": "Spearman rho across 30 groups; empty muscles excluded; highest burden ranks first.",
+  "data": [
+    {
+      "measure": "dalys",
+      "location": "AFG",
+      "n": 30,
+      "rho": 0.96,
+      "max_abs_rank_change": 7
+    },
+    {
+      "measure": "dalys",
+      "location": "IND",
+      "n": 30,
+      "rho": 0.9893,
+      "max_abs_rank_change": 3
+    },
+    {
+      "measure": "dalys",
+      "location": "JPN",
+      "n": 30,
+      "rho": 0.9822,
+      "max_abs_rank_change": 4
+    },
+    {
+      "measure": "dalys",
+      "location": "NGA",
+      "n": 30,
+      "rho": 0.9711,
+      "max_abs_rank_change": 6
+    },
+    {
+      "measure": "dalys",
+      "location": "UKR",
+      "n": 30,
+      "rho": 0.9769,
+      "max_abs_rank_change": 7
+    },
+    {
+      "measure": "dalys",
+      "location": "USA",
+      "n": 30,
+      "rho": 0.9933,
+      "max_abs_rank_change": 4
+    },
+    {
+      "measure": "deaths",
+      "location": "AFG",
+      "n": 30,
+      "rho": 0.9217,
+      "max_abs_rank_change": 9
+    },
+    {
+      "measure": "deaths",
+      "location": "IND",
+      "n": 30,
+      "rho": 0.9813,
+      "max_abs_rank_change": 6
+    },
+    {
+      "measure": "deaths",
+      "location": "JPN",
+      "n": 30,
+      "rho": 0.9924,
+      "max_abs_rank_change": 4
+    },
+    {
+      "measure": "deaths",
+      "location": "NGA",
+      "n": 30,
+      "rho": 0.9564,
+      "max_abs_rank_change": 7
+    },
+    {
+      "measure": "deaths",
+      "location": "UKR",
+      "n": 30,
+      "rho": 0.9884,
+      "max_abs_rank_change": 4
+    },
+    {
+      "measure": "deaths",
+      "location": "USA",
+      "n": 30,
+      "rho": 0.9969,
+      "max_abs_rank_change": 3
+    }
+  ]
+}

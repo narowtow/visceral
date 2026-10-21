@@ -1,0 +1,184 @@
+{
+  "schemaVersion": 1,
+  "id": "sex-ratios",
+  "title": "Male/female standardized burden ratios",
+  "description": "2023: WLD ratios (broad-bin) and country quantiles (deaths fine-age; DALYs broad-bin). Reproductive and mixed maternal groups excluded.",
+  "data": [
+    {
+      "measure": "dalys",
+      "organ": "bones_joints",
+      "world_ratio": 0.6692,
+      "n": 185,
+      "p05": 0.6118,
+      "p25": 0.6579,
+      "median": 0.6989,
+      "p75": 0.7255,
+      "p95": 0.7762
+    },
+    {
+      "measure": "dalys",
+      "organ": "brain",
+      "world_ratio": 1.13,
+      "n": 185,
+      "p05": 0.7962,
+      "p25": 0.9171,
+      "median": 1.042,
+      "p75": 1.16,
+      "p95": 1.425
+    },
+    {
+      "measure": "dalys",
+      "organ": "eyes",
+      "world_ratio": 0.85,
+      "n": 185,
+      "p05": 0.7619,
+      "p25": 0.8066,
+      "median": 0.8546,
+      "p75": 0.9167,
+      "p95": 1.051
+    },
+    {
+      "measure": "dalys",
+      "organ": "heart",
+      "world_ratio": 1.637,
+      "n": 185,
+      "p05": 1.025,
+      "p25": 1.325,
+      "median": 1.638,
+      "p75": 1.934,
+      "p95": 2.283
+    },
+    {
+      "measure": "dalys",
+      "organ": "lungs",
+      "world_ratio": 1.505,
+      "n": 185,
+      "p05": 1.061,
+      "p25": 1.272,
+      "median": 1.522,
+      "p75": 1.814,
+      "p95": 2.42
+    },
+    {
+      "measure": "dalys",
+      "organ": "mental_substance",
+      "world_ratio": 1.03,
+      "n": 185,
+      "p05": 0.8553,
+      "p25": 0.9118,
+      "median": 0.9907,
+      "p75": 1.108,
+      "p95": 1.424
+    },
+    {
+      "measure": "dalys",
+      "organ": "muscles",
+      "world_ratio": null,
+      "n": 0,
+      "p05": null,
+      "p25": null,
+      "median": null,
+      "p75": null,
+      "p95": null
+    },
+    {
+      "measure": "dalys",
+      "organ": "thyroid",
+      "world_ratio": 0.6631,
+      "n": 185,
+      "p05": 0.05007,
+      "p25": 0.4173,
+      "median": 0.6063,
+      "p75": 0.8587,
+      "p95": 1.535
+    },
+    {
+      "measure": "deaths",
+      "organ": "bones_joints",
+      "world_ratio": 0.6318,
+      "n": 185,
+      "p05": 0.2006,
+      "p25": 0.3668,
+      "median": 0.6441,
+      "p75": 0.9026,
+      "p95": 1.598
+    },
+    {
+      "measure": "deaths",
+      "organ": "brain",
+      "world_ratio": 1.131,
+      "n": 185,
+      "p05": 0.8371,
+      "p25": 0.9659,
+      "median": 1.099,
+      "p75": 1.274,
+      "p95": 1.542
+    },
+    {
+      "measure": "deaths",
+      "organ": "eyes",
+      "world_ratio": 0.7361,
+      "n": 16,
+      "p05": 0,
+      "p25": 0,
+      "median": 0.8171,
+      "p75": 1.226,
+      "p95": 2.051
+    },
+    {
+      "measure": "deaths",
+      "organ": "heart",
+      "world_ratio": 1.339,
+      "n": 185,
+      "p05": 0.9168,
+      "p25": 1.158,
+      "median": 1.413,
+      "p75": 1.606,
+      "p95": 1.877
+    },
+    {
+      "measure": "deaths",
+      "organ": "lungs",
+      "world_ratio": 1.591,
+      "n": 185,
+      "p05": 1.105,
+      "p25": 1.44,
+      "median": 1.702,
+      "p75": 2.03,
+      "p95": 2.92
+    },
+    {
+      "measure": "deaths",
+      "organ": "mental_substance",
+      "world_ratio": 3.564,
+      "n": 185,
+      "p05": 1.708,
+      "p25": 2.883,
+      "median": 4.056,
+      "p75": 6.039,
+      "p95": 25.61
+    },
+    {
+      "measure": "deaths",
+      "organ": "muscles",
+      "world_ratio": null,
+      "n": 0,
+      "p05": null,
+      "p25": null,
+      "median": null,
+      "p75": null,
+      "p95": null
+    },
+    {
+      "measure": "deaths",
+      "organ": "thyroid",
+      "world_ratio": 0.6971,
+      "n": 179,
+      "p05": 0,
+      "p25": 0.3992,
+      "median": 0.6677,
+      "p75": 0.8792,
+      "p95": 1.282
+    }
+  ]
+}

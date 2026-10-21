@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 1,
+  "id": "standards-mapping",
+  "title": "Alternative cause attribution",
+  "description": "2023 both sexes WLD: COVID/TB to systemic, diabetes to pancreas, mental/substance to brain; counts unchanged.",
+  "data": [
+    {
+      "measure": "deaths",
+      "organ": "other_unallocated",
+      "count_share_base": 6.31,
+      "count_share_alt": 6.31,
+      "ageStdRate_base": 66.92,
+      "ageStdRate_alt": 66.92,
+      "rank_base": 5,
+      "rank_alt": 5,
+      "rank_change": 0
+    },
+    {
+      "measure": "dalys",
+      "organ": "brain",
+      "count_share_base": 10.97,
+      "count_share_alt": 18.26,
+      "ageStdRate_base": 4934,
+      "ageStdRate_alt": 7567,
+      "rank_base": 2,
+      "rank_alt": 1,
+      "rank_change": 1
+    },
+    {
+      "measure": "dalys",
+      "organ": "lungs",
+      "count_share_base": 12.74,
+      "count_share_alt": 9.79,
+      "ageStdRate_base": 5375,
+      "ageStdRate_alt": 4215,
+      "rank_base": 1,
+      "rank_alt": 3,
+      "rank_change": -2
+    },
+    {
+      "measure": "dalys",
+      "organ": "heart",
+      "count_share_base": 9.501,
+      "count_share_alt": 9.501,
+      "ageStdRate_base": 4424,
+      "ageStdRate_alt": 4424,
+      "rank_base": 3,
+      "rank_alt": 2,
+      "rank_change": 1
+    },
+    {
+      "measure": "dalys",
+      "organ": "pancreas",
+      "count_share_base": 0.5386,
+      "count_share_alt": 3.761,
+      "ageStdRate_base": 243.4,
+      "ageStdRate_alt": 1681,
+      "rank_base": 22,
+      "rank_alt": 9,
+      "rank_change": 13
+    },
+    {
+      "measure": "dalys",
+      "organ": "mental_substance",
+      "count_share_base": 7.295,
+      "count_share_alt": 0,
+      "ageStdRate_base": 2633,
+      "ageStdRate_alt": 0,
+      "rank_base": 6,
+      "rank_alt": 30.5,
+      "rank_change": -24.5
+    },
+    {
+      "measure": "dalys",
+      "organ": "infections_systemic",
+      "count_share_base": 5.363,
+      "count_share_alt": 8.311,
+      "ageStdRate_base": 1816,
+      "ageStdRate_alt": 2976,
+      "rank_base": 9,
+      "rank_alt": 5,
+      "rank_change": 4
+    },
+    {
+      "measure": "dalys",
+      "organ": "other_unallocated",
+      "count_share_base": 6.496,
+      "count_share_alt": 6.496,
+      "ageStdRate_base": 2679,
+      "ageStdRate_alt": 2679,
+      "rank_base": 5,
+      "rank_alt": 6,
+      "rank_change": -1
+    },
+    {
+      "measure": "deaths",
+      "organ": "brain",
+      "count_share_base": 17.19,
+      "count_share_alt": 17.82,
+      "ageStdRate_base": 193.1,
+      "ageStdRate_alt": 198.3,
+      "rank_base": 3,
+      "rank_alt": 2,
+      "rank_change": 1
+    },
+    {
+      "measure": "deaths",
+      "organ": "lungs",
+      "count_share_base": 18.27,
+      "count_share_alt": 14.93,
+      "ageStdRate_base": 196.1,
+      "ageStdRate_alt": 162.4,
+      "rank_base": 2,
+      "rank_alt": 3,
+      "rank_change": -1
+    },
+    {
+      "measure": "deaths",
+      "organ": "heart",
+      "count_share_base": 19.61,
+      "count_share_alt": 19.61,
+      "ageStdRate_base": 217.1,
+      "ageStdRate_alt": 217.1,
+      "rank_base": 1,
+      "rank_alt": 1,
+      "rank_change": 0
+    },
+    {
+      "measure": "deaths",
+      "organ": "pancreas",
+      "count_share_base": 0.9788,
+      "count_share_alt": 4.303,
+      "ageStdRate_base": 10.38,
+      "ageStdRate_alt": 46.17,
+      "rank_base": 16,
+      "rank_alt": 7,
+      "rank_change": 9
+    },
+    {
+      "measure": "deaths",
+      "organ": "mental_substance",
+      "count_share_base": 0.6318,
+      "count_share_alt": 0,
+      "ageStdRate_base": 5.167,
+      "ageStdRate_alt": 0,
+      "rank_base": 21,
+      "rank_alt": 30.5,
+      "rank_change": -9.5
+    },
+    {
+      "measure": "deaths",
+      "organ": "infections_systemic",
+      "count_share_base": 3.55,
+      "count_share_alt": 6.892,
+      "ageStdRate_base": 28.05,
+      "ageStdRate_alt": 61.78,
+      "rank_base": 8,
+      "rank_alt": 6,
+      "rank_change": 2
+    }
+  ]
+}
